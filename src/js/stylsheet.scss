@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #1e1d1d;
+  #logo {
+    padding: 16px;
+    height: 80px;
+  }
+  #footer {
+    width: 98%;
+    margin: auto;
+    height: 3px;
+    border-radius: 1.5px;
+    background: #e0d0d0;
+  }
+  @media only screen and (max-width: 600px) {
+    #footer {
+      width: 95%;
+      margin: auto;
+      height: 3px;
+      border-radius: 1.5px;
+      background: #e0d0d0;
+    }
+  }
+  @media only screen and (max-height: 800px) {
+    #logo {
+      padding: 16px;
+      height: 40px;
+    }
+  }
+}
