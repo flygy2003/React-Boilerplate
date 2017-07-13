@@ -1,25 +1,68 @@
+$milk: #e0d0d0;
+$background_dark: #1e1d1d;
+
 body {
   margin: 0;
   padding: 0;
-  background: #1e1d1d;
-  #logo {
-    padding: 16px;
-    height: 80px;
-  }
-  #footer {
-    width: 98%;
-    margin: auto;
-    height: 3px;
-    border-radius: 1.5px;
-    background: #e0d0d0;
+  min-width: 300px;
+  background: $background_dark;
+  .toolbar {
+    #downArrow {
+      display: inline-block;
+      padding: 16px;
+      height: 45px;
+    }
+    #upArrow {
+      display: inline-block;
+      padding: 16px;
+      height: 45px;
+      transform-origin: center;
+      animation-name: spin;
+      animation-duration: 0.3s;
+      animation-delay: none;
+      animation-timing-function: ease-in-out;
+    }
+    @keyframes spin {
+      from: {transform: rotate(0);}
+      to: {transform: rotate(100)}
+    }
+    #logo {
+      display: inline-block;
+      padding: 16px;
+      height: 80px;
+    }
+    #footer {
+      position: fixed;
+      left: 1%;
+      right: 1%;
+      width: 98%;
+      margin: auto;
+      height: 3px;
+      border-radius: 1.5px;
+      background: $milk;
+    }
   }
   @media only screen and (max-width: 600px) {
     #footer {
       width: 95%;
-      margin: auto;
-      height: 3px;
-      border-radius: 1.5px;
-      background: #e0d0d0;
+      right: 2.5%;
+      left: 2.5%;
+    }
+    #downArrow {
+      position: fixed;
+      right: 40%;
+      left: 40%;
+      top: 30px;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    #logo {
+      height: 40px;
+    }
+    #footer {
+      right: 3.75%;
+      left: 3.75%;
+      width: 92.5%;
     }
   }
   @media only screen and (max-height: 800px) {
