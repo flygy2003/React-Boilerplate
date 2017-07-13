@@ -32,7 +32,7 @@ class DownArrow extends Component {
   }
 }
 
-class Logo extends Component {
+class Logo extends Component {  
   render() {
     return(
       <img src="../static/react.png" id="logo"/>

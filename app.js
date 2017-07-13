@@ -21,5 +21,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(app.get('port'), webpack.listen, function() {
-  console.log('[' + 'OK'.green + ']' + 'WebApp listening on port: ' + ip.address())
+  console.log('[' + 'OK'.green + ']' + ' WebApp listening @ ' + 'localhost'.red + ':' + ip.address().blue + ':' + app.get('port'))
 })
