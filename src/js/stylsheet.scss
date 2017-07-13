@@ -8,23 +8,27 @@ body {
   background: $background_dark;
   .toolbar {
     #downArrow {
-      display: inline-block;
+      display: block;
       padding: 16px;
       height: 45px;
     }
     #upArrow {
-      display: inline-block;
+      display: block;
       padding: 16px;
       height: 45px;
       transform-origin: center;
+      transform: rotate(100);
+      transition-delay: none;
+      transition-duration: 0.3ms;
+      transition-timing-function: ease-in-out;
       animation-name: spin;
       animation-duration: 0.3s;
       animation-delay: none;
       animation-timing-function: ease-in-out;
     }
     @keyframes spin {
-      from: {transform: rotate(0);}
-      to: {transform: rotate(100)}
+      from {transform: rotate(0)}
+      to {transform: rotate(100)}
     }
     #logo {
       display: inline-block;
