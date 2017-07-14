@@ -10,4 +10,4 @@ class Card extends Component {
   }
 }
 
-export default Cards
+export default Card

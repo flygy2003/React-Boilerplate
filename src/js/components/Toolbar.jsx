@@ -27,7 +27,7 @@ class DownArrow extends Component {
   }
   render() {
     return (
-      <img src="../static/downArrow.png" id={this.state.isDown ? "downArrow" : "upArrow"} onClick={this.spin.bind(this)}/>
+      <img src="../static/downArrow.png" className={this.state.isDown ? "arrow down" : "arrow up"} onClick={this.spin.bind(this)}/>
     )
   }
 }

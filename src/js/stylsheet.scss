@@ -1,5 +1,6 @@
 $milk: #e0d0d0;
 $background_dark: #1e1d1d;
+$black: #000000;
 
 body {
   margin: 0;
@@ -7,28 +8,18 @@ body {
   min-width: 300px;
   background: $background_dark;
   .toolbar {
-    #downArrow {
-      display: block;
-      padding: 16px;
-      height: 45px;
-    }
-    #upArrow {
-      display: block;
-      padding: 16px;
-      height: 45px;
-      transform-origin: center;
-      transform: rotate(100);
-      transition-delay: none;
-      transition-duration: 0.3ms;
-      transition-timing-function: ease-in-out;
-      animation-name: spin;
-      animation-duration: 0.3s;
-      animation-delay: none;
-      animation-timing-function: ease-in-out;
-    }
-    @keyframes spin {
-      from {transform: rotate(0)}
-      to {transform: rotate(100)}
+    .arrow {
+      display: inline-block;
+      &.down {
+        display: inline-block;
+        padding: 16px;
+        height: 45px;
+      }
+      &.up {
+        display: inline-block;
+        padding: 16px;
+        height: 45px;
+      }
     }
     #logo {
       display: inline-block;
@@ -36,9 +27,7 @@ body {
       height: 80px;
     }
     #footer {
-      position: fixed;
-      left: 1%;
-      right: 1%;
+      display: block;
       width: 98%;
       margin: auto;
       height: 3px;
@@ -46,11 +35,98 @@ body {
       background: $milk;
     }
   }
+  .cardContainer {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 80px;
+    width: 62%;
+    height: 62%;
+    min-width: 530px;
+    border-radius: 30px;
+    border-color: $milk;
+    border-width: 10px;
+    border-style: solid;
+    background-color: $background_dark;
+    .flex-container {
+      float: left;
+      list-style: none;
+      list-style-type: none;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      height: 100%;
+      padding: 0;
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+      -webkit-margin-start: 0;
+      -webkit-margin-end: 0;
+      -webkit-padding-start: 0;
+      .room {
+        position: relative;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        user-select: none;
+        cursor: pointer;
+        display: block;
+        width: 450px;
+        height: auto;
+        font-family: 'Fjalla One', sans-serif;
+        font-size: 275%;
+        &.on {
+          animation-delay: 0ms;
+          animation-duration: 0.25s;
+          animation-name: milker;
+          animation-iteration-count: 1;
+          animation-timing-function: ease-out;
+          @at-root {
+            @keyframes milker {
+              from {color: $black}
+            }
+          }
+          color: $milk;
+        }
+        &.off {
+          animation-delay: 0ms;
+          animation-duration: 0.25s;
+          animation-name: darker;
+          animation-iteration-count: 1;
+          animation-timing-function: ease-out;
+          @at-root {
+            @keyframes darker {
+              from {color: $milk}
+              to {color: $black}
+            }
+          }
+          color: $black;
+        }
+      }
+    }
+  }
   @media only screen and (max-width: 600px) {
+    .cardContainer {
+      .room {
+        margin: 0;
+        height: 10px;
+        width: 100px;
+        font-size: auto;
+      }
+    }
+    .arrow {
+      margin: auto;
+    }
     #footer {
       width: 95%;
-      right: 2.5%;
-      left: 2.5%;
+      margin: auto;
     }
     #downArrow {
       position: fixed;
@@ -64,8 +140,7 @@ body {
       height: 40px;
     }
     #footer {
-      right: 3.75%;
-      left: 3.75%;
+      margin: auto;
       width: 92.5%;
     }
   }
