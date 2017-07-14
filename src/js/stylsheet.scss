@@ -70,55 +70,71 @@ body {
       -webkit-margin-start: 0;
       -webkit-margin-end: 0;
       -webkit-padding-start: 0;
-      .room {
-        position: relative;
-        margin: auto;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        user-select: none;
-        cursor: pointer;
-        display: block;
-        width: 450px;
+      .link-wrapper {
+        width: auto;
         height: auto;
-        font-family: 'Fjalla One', sans-serif;
-        font-size: 275%;
-        &.on {
-          animation-delay: 0ms;
-          animation-duration: 0.25s;
-          animation-name: milker;
-          animation-iteration-count: 1;
-          animation-timing-function: ease-out;
-          @at-root {
-            @keyframes milker {
-              from {color: $black}
+        display: block;
+        position: relative;
+        .room {
+          position: relative;
+          margin: auto;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          user-select: none;
+          cursor: pointer;
+          display: block;
+          width: 450px;
+          height: auto;
+          font-family: 'Fjalla One', sans-serif;
+          font-size: 275%;
+          &.on {
+            animation-delay: 0ms;
+            animation-duration: 0.25s;
+            animation-name: milker;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            @at-root {
+              @keyframes milker {
+                from {color: $black}
+              }
             }
+            color: $milk;
           }
-          color: $milk;
-        }
-        &.off {
-          animation-delay: 0ms;
-          animation-duration: 0.25s;
-          animation-name: darker;
-          animation-iteration-count: 1;
-          animation-timing-function: ease-out;
-          @at-root {
-            @keyframes darker {
-              from {color: $milk}
-              to {color: $black}
+          &.off {
+            animation-delay: 0ms;
+            animation-duration: 0.25s;
+            animation-name: darker;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            @at-root {
+              @keyframes darker {
+                from {color: $milk}
+                to {color: $black}
+              }
             }
+            color: $black;
           }
-          color: $black;
         }
       }
     }
   }
   @media only screen and (max-width: 600px) {
     .cardContainer {
-      .room {
-        margin: 0;
-        height: 10px;
-        width: 100px;
-        font-size: auto;
+      min-width: 0;
+      height: auto;
+      .flex-container {
+        display: block;
+        .link-wrapper {
+          position: default;
+          float: left;
+          margin-bottom: 100px;
+          .room {
+            text-align: center;
+            height: 10px;
+            width: 200px;
+            font-size: auto;
+          }
+        }
       }
     }
     .arrow {

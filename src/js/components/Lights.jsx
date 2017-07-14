@@ -36,7 +36,9 @@ class Lights extends Component {
             {room: 'all'}
           ].map((item, i) => {
             return(
-              <Room lumer={(item.room != "all") ? "s" + item.room.replace(" ", "") : item.room} key={i}>{item.room}</Room>
+              <div className="link-wrapper">
+                <Room lumer={(item.room != "all") ? "s" + item.room.replace(" ", "") : item.room} key={i}>{item.room}</Room>
+              </div>
             )
           })
         }
@@ -106,8 +108,8 @@ class Room extends Component {
 
   render() {
     return (
-        <li onClick={this.handleClick} className={this.state.isToggleOn ? "room on" : "room off"}>
-          {this.state.isToggleOn ? this.props.children + ': ON' : this.props.children + ': OFF'}
+        <li onClick={this.handleClick} className={this.state.isToggleOn ? "room off" : "room on"}>
+          {this.state.isToggleOn ? this.props.children : this.props.children}
         </li>
     )
   }
