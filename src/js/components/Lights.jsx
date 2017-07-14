@@ -10,6 +10,7 @@ var config = {
   storageBucket: "home-b7104.appspot.com",
   messagingSenderId: "42864256502"
 }
+
 firebase.initializeApp(config)
 
 class Lights extends Component {
@@ -36,7 +37,7 @@ class Lights extends Component {
             {room: 'All'}
           ].map((item, i) => {
             return(
-              <div className="link-wrapper">
+              <div className={item.room == "All" ? "link-wrapper else" : "link-wrapper all"}>
                 <Room lumer={(item.room != "All") ? "s" + item.room.replace(" ", "") : "all"} key={i}>{item.room}</Room>
               </div>
             )
@@ -49,6 +50,7 @@ class Lights extends Component {
 }
 
 class Room extends Component {
+
   constructor(props) {
     super(props)
     this.state = { isToggleOn: false }
@@ -105,7 +107,6 @@ class Room extends Component {
     firebase.database().ref().child('/rooms/' + this.props.lumer).set(!this.state.isToggleOn)
     // console.log(this.props.lumer + ": " + !this.state.isToggleOn)
   }
-
   render() {
     return (
         <li onClick={this.handleClick} className={this.state.isToggleOn ? "room off" : "room on"}>
