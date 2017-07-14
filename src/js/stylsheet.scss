@@ -52,7 +52,7 @@ body {
     border-style: solid;
     background-color: $background_dark;
     .flex-container {
-      float: left;
+      margin: auto;
       list-style: none;
       list-style-type: none;
       display: -webkit-box;
@@ -61,6 +61,7 @@ body {
       display: -moz-flex;
       display: -webkit-flex;
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       flex-direction: row;
       height: 100%;
@@ -121,24 +122,24 @@ body {
   @media only screen and (max-width: 600px) {
     .cardContainer {
       min-width: 0;
+      margin-top: 75px;
       height: auto;
       .flex-container {
+        float: left;
         display: block;
         .link-wrapper {
           position: default;
           float: left;
-          margin-bottom: 100px;
+          margin-bottom: 10px;
           .room {
             text-align: center;
-            height: 10px;
-            width: 200px;
-            font-size: auto;
+            max-width: 250px;
           }
         }
       }
     }
     .arrow {
-      margin: auto;
+      margin-left: 35px;
     }
     #footer {
       width: 95%;
@@ -154,6 +155,9 @@ body {
   @media only screen and (max-width: 400px) {
     #logo {
       height: 40px;
+    }
+    .arrow {
+      margin-left: 0px;
     }
     #footer {
       margin: auto;

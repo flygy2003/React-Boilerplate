@@ -33,11 +33,11 @@ class Lights extends Component {
             {room: 'Family Room'},
             {room: 'Master Bedroom'},
             {room: 'Master Bathrooms'},
-            {room: 'all'}
+            {room: 'All'}
           ].map((item, i) => {
             return(
               <div className="link-wrapper">
-                <Room lumer={(item.room != "all") ? "s" + item.room.replace(" ", "") : item.room} key={i}>{item.room}</Room>
+                <Room lumer={(item.room != "All") ? "s" + item.room.replace(" ", "") : "all"} key={i}>{item.room}</Room>
               </div>
             )
           })
