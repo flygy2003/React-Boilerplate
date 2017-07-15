@@ -37,7 +37,7 @@ class Lights extends Component {
              'All'
           ].sort().map((item, i) => {
             return(
-              <div className={item == "All" ? "link-wrapper else" : "link-wrapper all"}>
+              <div className={i == 16 ? "link-wrapper else" : "link-wrapper all"}>
                 <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
               </div>
             )
