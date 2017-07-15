@@ -19,26 +19,26 @@ class Lights extends Component {
       <Card>
         <ul className="flex-container">
           {[
-            {room: 'kitchen'},
-            {room: 'Living Room'},
-            {room: 'Office'},
-            {room: 'Office Bathroom'},
-            {room: 'Neekon\'s Bedroom'},
-            {room: 'Homework Room'},
-            {room: 'Ryan\'s Bathroom'},
-            {room: 'Ryan\'s Bedroom'},
-            {room: 'Dining Room'},
-            {room: 'Gallery'},
-            {room: 'Guest Bathroom'},
-            {room: 'Library'},
-            {room: 'Family Room'},
-            {room: 'Master Bedroom'},
-            {room: 'Master Bathrooms'},
-            {room: 'All'}
-          ].map((item, i) => {
+             'kitchen',
+             'Living Room',
+             'Office',
+             'Office Bathroom',
+             'Neekon\'s Bedroom',
+             'Homework Room',
+             'Ryan\'s Bathroom',
+             'Ryan\'s Bedroom',
+             'Dining Room',
+             'Gallery',
+             'Guest Bathroom',
+             'Library',
+             'Family Room',
+             'Master Bedroom',
+             'Master Bathrooms',
+             'All'
+          ].sort().map((item, i) => {
             return(
-              <div className={item.room == "All" ? "link-wrapper else" : "link-wrapper all"}>
-                <Room lumer={(item.room != "All") ? "s" + item.room.replace(" ", "") : "all"} key={i}>{item.room}</Room>
+              <div className={item == "All" ? "link-wrapper else" : "link-wrapper all"}>
+                <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
               </div>
             )
           })
@@ -90,13 +90,16 @@ class Room extends Component {
         database.child('/rooms/sGallery').set(!this.state.isToggleOn)
         database.child('/rooms/sGuestBathroom').set(!this.state.isToggleOn)
         database.child('/rooms/sHomeworkRoom').set(!this.state.isToggleOn)
-        database.child('/rooms/sKitchen').set(!this.state.isToggleOn)
+        database.child('/rooms/skitchen').set(!this.state.isToggleOn)
+        database.child('/rooms/sLibrary').set(!this.state.isToggleOn)
         database.child('/rooms/sLivingRoom').set(!this.state.isToggleOn)
         database.child('/rooms/sMasterBedroom').set(!this.state.isToggleOn)
-        database.child('/rooms/sNeekonBedroom').set(!this.state.isToggleOn)
+        database.child('/rooms/sMasterBathrooms').set(!this.state.isToggleOn)
+        database.child('/rooms/sNeekon\'sBedroom').set(!this.state.isToggleOn)
         database.child('/rooms/sOffice').set(!this.state.isToggleOn)
         database.child('/rooms/sOfficeBathroom').set(!this.state.isToggleOn)
-        database.child('/rooms/sRyanRoom').set(!this.state.isToggleOn)
+        database.child('/rooms/sRyan\'sBedroom').set(!this.state.isToggleOn)
+        database.child('/rooms/sRyan\'sBathroom').set(!this.state.isToggleOn)
         this.setState(prevState => ({
           isToggleOn: !prevState.isToggleOn
         }))
