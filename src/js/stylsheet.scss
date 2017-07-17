@@ -10,16 +10,22 @@ body {
   background: $background_dark;
   .toolbar {
     .arrow {
+      height: 30px;
+      padding: 20px;
       display: inline-block;
       &.down {
         display: inline-block;
-        padding: 16px;
-        height: 45px;
+        transform: rotate(0deg);
+        transform-origin: 50 50;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
       }
       &.up {
         display: inline-block;
-        padding: 16px;
-        height: 45px;
+        transform: rotate(180deg);
+        transform-origin: 50 50;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
       }
     }
     #logo {
