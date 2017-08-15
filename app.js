@@ -18,7 +18,7 @@ var config = {
 }
 
 fb.initializeApp(config)
-var database = firebase.database().ref()
+var database = fb.database().ref()
 
 function turnAllOff() {
   database.child('/rooms/all').set(true)
