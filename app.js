@@ -44,13 +44,6 @@ function turnAllOff() {
   database.child('/rooms/sRyan\'sBathroom').set(true)
 }
 
-var rule = new schedule.RecurrenceRule();
-    rule.hour = 22;
-    rule.minute = 45;
-var j = schedule.scheduleJob(rule, function () {
-  console.log('All lights off!');
-  turnAllOff();
-});
 
 app.set('port', process.env.PORT || 80);
 
@@ -68,3 +61,11 @@ app.get('*', (req, res) => {
 app.listen(app.get('port'), webpack.listen, () => {
   console.log('[' + 'OK'.green + ']' + ' WebApp listening @ ' + 'localhost'.red + ':' + ip.address().blue + ':' + app.get('port'))
 })
+
+var rule = new schedule.RecurrenceRule();
+    rule.hour = 22;
+    rule.minute = 45;
+var j = schedule.scheduleJob(rule, function () {
+  console.log('All lights off!');
+  turnAllOff();
+});
