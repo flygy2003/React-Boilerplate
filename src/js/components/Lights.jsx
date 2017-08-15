@@ -19,8 +19,10 @@ class Lights extends Component {
       <Card>
         <ul className="flex-container">
           {[
+             'Atrium',
              'kitchen',
              'Living Room',
+             'Living Room 2',
              'Office',
              'Office Bathroom',
              'Neekon\'s Bedroom',
@@ -29,15 +31,16 @@ class Lights extends Component {
              'Ryan\'s Bedroom',
              'Dining Room',
              'Gallery',
+             'Gallery 2',
+             'Gallery 3',
              'Guest Bathroom',
              'Library',
-             'Family Room',
              'Master Bedroom',
              'Master Bathrooms',
              'All'
           ].sort().map((item, i) => {
             return(
-              <div className={i == 15 ? "link-wrapper else" : "link-wrapper all"}>
+              <div className={i == 18 ? "link-wrapper else" : "link-wrapper all"}>
                 <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
               </div>
             )
@@ -97,6 +100,11 @@ class Room extends Component {
         database.child('/rooms/sMasterBathrooms').set(!this.state.isToggleOn)
         database.child('/rooms/sNeekon\'sBedroom').set(!this.state.isToggleOn)
         database.child('/rooms/sOffice').set(!this.state.isToggleOn)
+        database.child('/rooms/sAtrium').set(!this.state.isToggleOn)
+        database.child('/rooms/sLivingRoom2').set(!this.state.isToggleOn)
+        database.child('/rooms/sLivingRoom3').set(!this.state.isToggleOn)
+        database.child('/rooms/sGallery2').set(!this.state.isToggleOn)
+        database.child('/rooms/sGallery3').set(!this.state.isToggleOn)
         database.child('/rooms/sOfficeBathroom').set(!this.state.isToggleOn)
         database.child('/rooms/sRyan\'sBedroom').set(!this.state.isToggleOn)
         database.child('/rooms/sRyan\'sBathroom').set(!this.state.isToggleOn)
