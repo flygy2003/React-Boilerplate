@@ -17,6 +17,7 @@ let database = firebase.database().ref()
 class Lights extends Component {
   constructor() {
     super()
+    
   }
   turnAllOn() {
     database.child('/rooms/all').set(false)
@@ -33,7 +34,7 @@ class Lights extends Component {
     database.child('/rooms/sNeekon\'sBedroom').set(false)
     database.child('/rooms/sOffice').set(false)
     database.child('/rooms/sAtrium').set(false)
-    database.child('/rooms/sLivingRoom2').set(false)
+    database.child('/rooms/sLivingRoom 2').set(false)
     database.child('/rooms/sLivingRoom3').set(false)
     database.child('/rooms/sGallery2').set(false)
     database.child('/rooms/sGallery3').set(false)
@@ -56,7 +57,7 @@ class Lights extends Component {
     database.child('/rooms/sNeekon\'sBedroom').set(true)
     database.child('/rooms/sOffice').set(true)
     database.child('/rooms/sAtrium').set(true)
-    database.child('/rooms/sLivingRoom2').set(true)
+    database.child('/rooms/sLivingRoom 2').set(true)
     database.child('/rooms/sLivingRoom3').set(true)
     database.child('/rooms/sGallery2').set(true)
     database.child('/rooms/sGallery3').set(true)
