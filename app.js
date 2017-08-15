@@ -45,8 +45,8 @@ function turnAllOff() {
 }
 
 var rule = new schedule.RecurrenceRule();
-rule.hour = 22;
-rule.minute = 45;
+    rule.hour = 22;
+    rule.minute = 45;
 var j = schedule.scheduleJob(rule, function () {
   console.log('All lights off!');
   turnAllOff();
