@@ -12,12 +12,72 @@ var config = {
 }
 
 firebase.initializeApp(config)
+let database = firebase.database().ref()
 
 class Lights extends Component {
+  constructor() {
+    super()
+  }
+  turnAllOn() {
+    database.child('/rooms/all').set(false)
+    database.child('/rooms/sDiningRoom').set(false)
+    database.child('/rooms/sFamilyRoom').set(false)
+    database.child('/rooms/sGallery').set(false)
+    database.child('/rooms/sGuestBathroom').set(false)
+    database.child('/rooms/sHomeworkRoom').set(false)
+    database.child('/rooms/skitchen').set(false)
+    database.child('/rooms/sLibrary').set(false)
+    database.child('/rooms/sLivingRoom').set(false)
+    database.child('/rooms/sMasterBedroom').set(false)
+    database.child('/rooms/sMasterBathrooms').set(false)
+    database.child('/rooms/sNeekon\'sBedroom').set(false)
+    database.child('/rooms/sOffice').set(false)
+    database.child('/rooms/sAtrium').set(false)
+    database.child('/rooms/sLivingRoom2').set(false)
+    database.child('/rooms/sLivingRoom3').set(false)
+    database.child('/rooms/sGallery2').set(false)
+    database.child('/rooms/sGallery3').set(false)
+    database.child('/rooms/sOfficeBathroom').set(false)
+    database.child('/rooms/sRyan\'sBedroom').set(false)
+    database.child('/rooms/sRyan\'sBathroom').set(false)
+  }
+  turnAllOff() {
+    database.child('/rooms/all').set(true)
+    database.child('/rooms/sDiningRoom').set(true)
+    database.child('/rooms/sFamilyRoom').set(true)
+    database.child('/rooms/sGallery').set(true)
+    database.child('/rooms/sGuestBathroom').set(true)
+    database.child('/rooms/sHomeworkRoom').set(true)
+    database.child('/rooms/skitchen').set(true)
+    database.child('/rooms/sLibrary').set(true)
+    database.child('/rooms/sLivingRoom').set(true)
+    database.child('/rooms/sMasterBedroom').set(true)
+    database.child('/rooms/sMasterBathrooms').set(true)
+    database.child('/rooms/sNeekon\'sBedroom').set(true)
+    database.child('/rooms/sOffice').set(true)
+    database.child('/rooms/sAtrium').set(true)
+    database.child('/rooms/sLivingRoom2').set(true)
+    database.child('/rooms/sLivingRoom3').set(true)
+    database.child('/rooms/sGallery2').set(true)
+    database.child('/rooms/sGallery3').set(true)
+    database.child('/rooms/sOfficeBathroom').set(true)
+    database.child('/rooms/sRyan\'sBedroom').set(true)
+    database.child('/rooms/sRyan\'sBathroom').set(true)
+  }
   render() {
     return(
       <Card>
         <ul className="flex-container">
+        <div className='link-wrapper all'>
+          <div className='allLights'>
+            <div className='on' onClick={this.turnAllOn.bind(this)}>
+              All
+            </div>
+            <div className='off' onClick={this.turnAllOff.bind(this)}>
+              None
+            </div>
+          </div>
+          </div>
           {[
              'Atrium',
              'kitchen',
@@ -36,11 +96,10 @@ class Lights extends Component {
              'Guest Bathroom',
              'Library',
              'Master Bedroom',
-             'Master Bathrooms',
-             'All'
+             'Master Bathrooms'
           ].sort().map((item, i) => {
             return(
-              <div className={i == 18 ? "link-wrapper else" : "link-wrapper all"}>
+              <div className={i == 17 ? "link-wrapper else" : "link-wrapper all"}>
                 <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
               </div>
             )
@@ -85,33 +144,6 @@ class Room extends Component {
   }
   handleClick() {
     var room = this.props.lumer
-    var database = firebase.database().ref()
-    if(room == "all") {
-        database.child('/rooms/all').set(!this.state.isToggleOn)
-        database.child('/rooms/sDiningRoom').set(!this.state.isToggleOn)
-        database.child('/rooms/sFamilyRoom').set(!this.state.isToggleOn)
-        database.child('/rooms/sGallery').set(!this.state.isToggleOn)
-        database.child('/rooms/sGuestBathroom').set(!this.state.isToggleOn)
-        database.child('/rooms/sHomeworkRoom').set(!this.state.isToggleOn)
-        database.child('/rooms/skitchen').set(!this.state.isToggleOn)
-        database.child('/rooms/sLibrary').set(!this.state.isToggleOn)
-        database.child('/rooms/sLivingRoom').set(!this.state.isToggleOn)
-        database.child('/rooms/sMasterBedroom').set(!this.state.isToggleOn)
-        database.child('/rooms/sMasterBathrooms').set(!this.state.isToggleOn)
-        database.child('/rooms/sNeekon\'sBedroom').set(!this.state.isToggleOn)
-        database.child('/rooms/sOffice').set(!this.state.isToggleOn)
-        database.child('/rooms/sAtrium').set(!this.state.isToggleOn)
-        database.child('/rooms/sLivingRoom2').set(!this.state.isToggleOn)
-        database.child('/rooms/sLivingRoom3').set(!this.state.isToggleOn)
-        database.child('/rooms/sGallery2').set(!this.state.isToggleOn)
-        database.child('/rooms/sGallery3').set(!this.state.isToggleOn)
-        database.child('/rooms/sOfficeBathroom').set(!this.state.isToggleOn)
-        database.child('/rooms/sRyan\'sBedroom').set(!this.state.isToggleOn)
-        database.child('/rooms/sRyan\'sBathroom').set(!this.state.isToggleOn)
-        this.setState(prevState => ({
-          isToggleOn: !prevState.isToggleOn
-        }))
-    }
     this.setState( prevState => ({
       isToggleOn: !prevState.isToggleOn
     }) )
@@ -126,5 +158,4 @@ class Room extends Component {
     )
   }
 }
-
 export default Lights

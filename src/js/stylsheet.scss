@@ -91,13 +91,11 @@ body {
           border-radius: 15px;
           position: relative;
           margin: auto;
-          margin-top: 20px;
-          margin-bottom: 20px;
+          margin: 20px;
           user-select: none;
           cursor: pointer;
           display: block;
           width: 350px;
-          margin-right: 20px;
           height: auto;
           font-family: 'Fjalla One', sans-serif;
           font-size: 275%;
@@ -133,6 +131,39 @@ body {
       }
     }
   }
+  .allLights {
+    padding: 7.5px;
+    border-width: 4px;
+    border-style: solid;
+    border-color:  $milk;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 350px;
+    height: 55px;
+    margin: 20px;
+    font-family: 'Fjalla One', sans-serif;
+    .on {
+      cursor: pointer;
+      margin-top: 7.5px;
+      margin-right: 20px;
+      height: 40px;
+      font-size: 2em;
+      display: inline-block;
+      color: $milk;
+    }
+    .off {
+      cursor: pointer;
+      margin-top: 7.5px;
+      margin-left: 20px;
+      height: 40px;
+      font-size: 2em;
+      display: inline-block;
+      -webkit-text-stroke: 0.5px $milk;
+      color: $steel;
+    }
+  }
   @media only screen and (max-width: 600px) {
     .cardContainer {
       min-width: 0;
@@ -144,9 +175,10 @@ body {
         display: block;
         .link-wrapper {
           padding: none;
-          width: 100%;
+          max-width: 250px;
           margin-bottom: 10px;
           &.all {
+          max-width: 250px;
           border-style: solid;
           border-color: $milk;
           border-top-width: 0px;
@@ -155,6 +187,7 @@ body {
           border-left-width: 0px;
           }
           &.else {
+          max-width: 250px;
           border-style: none;
           border-color: #1e1d1d;
           border-top-width: 0px;
@@ -163,6 +196,7 @@ body {
           border-left-width: 0px;
           }
           .room {
+            margin: auto;
             padding: none;
             text-align: center;
             max-width: 250px;
@@ -188,6 +222,11 @@ body {
       right: 40%;
       left: 40%;
       top: 30px;
+    }
+    .allLights {
+      max-width: 220px;
+      margin: auto;
+      border-style: none;
     }
   }
   @media only screen and (max-width: 400px) {
