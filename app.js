@@ -17,7 +17,7 @@ var config = {
   messagingSenderId: "42864256502"
 }
 
-firebase.initializeApp(config)
+fb.initializeApp(config)
 var database = firebase.database().ref()
 
 function turnAllOff() {
