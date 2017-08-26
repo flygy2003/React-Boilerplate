@@ -46,7 +46,7 @@ var app = express()
 
 
 app.set('port', process.env.PORT || 80);
-
+ 
 const webpack = newWebpackMiddle(compiler, config);
 webpack(app)
 
