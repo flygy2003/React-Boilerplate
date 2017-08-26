@@ -51,7 +51,7 @@ const webpack = newWebpackMiddle(compiler, config);
 webpack(app)
 
 app.use('*', express.static(__dirname + '/src/static'))
-
+ 
 app.get('*', (req, res) => {
   // send the html file
   res.sendFile(__dirname + '/src/index.html')
