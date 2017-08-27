@@ -84,6 +84,7 @@ class Lights extends Component {
              'kitchen',
              'Living Room',
              'Living Room 2',
+             'Living Room 3',
              'Office',
              'Office Bathroom',
              'Neekon\'s Bedroom',
