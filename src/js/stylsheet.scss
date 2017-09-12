@@ -27,6 +27,22 @@ body {
         transition-duration: 0.25s;
         transition-timing-function: ease-in-out;
       }
+      .list {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        &.down {
+          opacity: none;
+        }
+        &.up {
+          opacity: 100%;
+        }
+        .item {
+          display: block;
+          width: 40px;
+          background-color: $steel; 
+        }
+      }
     }
     #logo {
       display: inline-block;

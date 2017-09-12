@@ -3,16 +3,16 @@ import * as firebase from 'firebase'
 import Card from './Card.jsx'
 
 var config = {
-  apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
-  authDomain: "home-b7104.firebaseapp.com",
-  databaseURL: "https://home-b7104.firebaseio.com",
-  projectId: "home-b7104",
-  storageBucket: "home-b7104.appspot.com",
-  messagingSenderId: "42864256502"
+  apiKey: 'AIzaSyCpQDKRukiaU_4G0maysHtzldoVlIXh1qc',
+  authDomain: 'securehome-f5ffb.firebaseapp.com',
+  databaseURL: 'https://securehome-f5ffb.firebaseio.com',
+  projectId: 'securehome-f5ffb',
+  storageBucket: 'securehome-f5ffb.appspot.com',
+  messagingSenderId: '887151594089'
 }
-
 firebase.initializeApp(config)
-let database = firebase.database().ref()
+let rooms = firebase.database().ref().child(roomNames)
+let relays = firebase.database().ref().child(relays)
 
 class Lights extends Component {
   constructor() {
@@ -68,7 +68,7 @@ class Lights extends Component {
   render() {
     return(
       <Card>
-        <ul className="flex-container">
+        <ul className='flex-container'>
         <div className='link-wrapper all'>
           <div className='allLights'>
             <div className='on' onClick={this.turnAllOn.bind(this)}>
@@ -78,30 +78,32 @@ class Lights extends Component {
               None
             </div>
           </div>
-          </div>
+        </div>
           {[
-             'Atrium',
-             'kitchen',
-             'Living Room',
-             'Living Room 2',
-             'Office',
-             'Office Bathroom',
-             'Neekon\'s Bedroom',
-             'Homework Room',
-             'Ryan\'s Bathroom',
-             'Ryan\'s Bedroom',
-             'Dining Room',
-             'Gallery',
-             'Gallery 2',
-             'Gallery 3',
-             'Guest Bathroom',
-             'Library',
-             'Master Bedroom',
-             'Master Bathrooms'
-          ].sort().map((item, i) => {
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            'last'
+          ].map((item, i) => {
             return(
-              <div className={i == 17 ? "link-wrapper else" : "link-wrapper all"}>
-                <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
+              <div className={item == 'last' ? 'link-wrapper else' : 'link-wrapper all'}>
+                <Room lumer={'r' + i} key={i}>{rooms.child('r' + i)}</Room>
               </div>
             )
           })
@@ -135,7 +137,7 @@ class Room extends Component {
       })
     })
     var listener = firebase.database().ref().child('/rooms/' + room)
-    listener.on("value", (snapshot) => {
+    listener.on('value', (snapshot) => {
       state = snapshot.val()
       this.setState({
         isToggleOn: state
@@ -149,11 +151,11 @@ class Room extends Component {
       isToggleOn: !prevState.isToggleOn
     }) )
     firebase.database().ref().child('/rooms/' + this.props.lumer).set(!this.state.isToggleOn)
-    // console.log(this.props.lumer + ": " + !this.state.isToggleOn)
+    // console.log(this.props.lumer + ': ' + !this.state.isToggleOn)
   }
   render() {
     return (
-        <li onClick={this.handleClick} className={this.state.isToggleOn ? "room off" : "room on"}>
+        <li onClick={this.handleClick} className={this.state.isToggleOn ? 'room off' : 'room on'}>
           {this.state.isToggleOn ? this.props.children : this.props.children}
         </li>
     )

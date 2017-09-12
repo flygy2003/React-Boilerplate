@@ -27,7 +27,15 @@ class DownArrow extends Component {
   }
   render() {
     return (
-      <img src="../static/downArrow.png" className={this.state.isDown ? "arrow down" : "arrow up"} onClick={this.spin.bind(this)}/>
+      <div>
+        <img src="../static/downArrow.png" className={this.state.isDown ? "arrow down" : "arrow up"} onClick={this.spin.bind(this)}/>
+        <div className={this.state.isDown ? "list down" : "list up"}>
+          <div className='item'>hello there</div>
+          <div className='item'>I am a list</div>
+          <div className='item'>I am supposed to work</div>
+          <div className='item'>But obiously I won't.</div>
+        </div>
+      </div>
     )
   }
 }
