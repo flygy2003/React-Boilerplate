@@ -1,7 +1,7 @@
 var io = require('rpi-gpio')
 var fb = require('firebase')
 var chalk = require('chalk')
-const spawn = require('child_process')
+var { spawn } = require('child_process')
 var utilLog = require('util').log
 var config = {
   apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
