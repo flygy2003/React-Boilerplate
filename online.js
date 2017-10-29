@@ -2,6 +2,7 @@ var io = require('rpi-gpio')
 var fb = require('firebase')
 var chalk = require('chalk')
 var {spawn} = require('child_process')
+var utilLog = require('util').log
 var config = {
   apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
   authDomain: "home-b7104.firebaseapp.com",
@@ -46,9 +47,7 @@ function check_connection_status() {
       }
     })
   }
-
-  // example usage:
-  checkInternet(function (isConnected) {
+  checkInternet(function(isConnected) {
     if (isConnected) {
       console.log(`[ ${chalk.green('OK')} ]: connection stable`)
     } else {
@@ -56,7 +55,7 @@ function check_connection_status() {
       console.log(`[ ${chalk.yellow('EXEC')} ]: spawning offline mode`)
       var child_ = spawn('node offline.js')
     }
-  })
+  })()
 }
 setInterval(check_connection_status, 10000)
 
