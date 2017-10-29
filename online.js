@@ -54,7 +54,7 @@ function check_connection_status() {
     } else {
       console.log(`[ ${chalk.red('ERR')} ]: connection unstable: ping failed`)
       console.log(`[ ${chalk.yellow('EXEC')} ]: spawning offline mode`)
-      var child_ = spawn('node app.js')
+      var child_ = spawn('node offline.js')
     }
   })
 }
