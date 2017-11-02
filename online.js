@@ -38,26 +38,17 @@ var rooms = [
              'sLivingRoom 3']
 
 function check_connection_status() {
-  function checkInternet(cb) {
-    require('dns').lookup('google.com', function (err) {
-      if (err && err.code == "ENOTFOUND") {
-        cb(false)
-      } else {
-        cb(true)
-      }
-    })
-  }
-  checkInternet(function(isConnected) {
-    if (isConnected) {
-      console.log(`[ ${chalk.green('OK')} ]: connection stable`)
-    } else {
+  require('dns').lookup('google.com', function (err) {
+    if (err && err.code == "ENOTFOUND") {
       console.log(`[ ${chalk.red('ERR')} ]: connection unstable: ping failed`)
       console.log(`[ ${chalk.yellow('EXEC')} ]: spawning offline mode`)
       var child_ = spawn('node offline.js')
+    } else {
+      console.log(`[ ${chalk.green('OK')} ]: connection stable`)
     }
-  })()
+  })
 }
-setInterval(check_connection_status, 10000)
+setInterval(check_connection_status, 1000)
 
 io.setup(pins[0], io.DIR_OUT, () => {
   db.child(`rooms/${rooms[0]}`)
