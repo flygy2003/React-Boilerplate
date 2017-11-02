@@ -44,6 +44,9 @@ function check_connection_status() {
       var spawn = require('child_process').spawn,
       child_ = spawn('node', ['offline.js'])
       console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
+      console.log(`[ ${chalk.blue('i')} ]: Exiting "online.js" => ${process.pid}`)
+      console.log(`[ ${chalk.blue('i')} ]: Commencing new network PING --> "offline.js"`)
+      process.exit(0)
     } else {
       console.log(`[ ${chalk.green('OK')} ]: connection stable`)
     }
