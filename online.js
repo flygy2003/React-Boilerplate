@@ -1,7 +1,6 @@
 var io = require('rpi-gpio')
 var fb = require('firebase')
 var chalk = require('chalk')
-var { spawn } = require('child_process')
 var utilLog = require('util').log
 var config = {
   apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
@@ -42,7 +41,9 @@ function check_connection_status() {
     if (err && err.code == "ENOTFOUND") {
       console.log(`[ ${chalk.red('ERR')} ]: connection unstable: ping failed`)
       console.log(`[ ${chalk.yellow('EXEC')} ]: spawning offline mode`)
-      var child_ = spawn('node offline.js')
+      var spawn = require('child_process').spawn,
+      child_ = spawn('node', ['offline.js'])
+      console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
     } else {
       console.log(`[ ${chalk.green('OK')} ]: connection stable`)
     }
