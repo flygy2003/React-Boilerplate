@@ -18,41 +18,51 @@ var pins =
   40, 38, 36, 32, 22, 18, 16, 12]/* furthest from pi */
 
 // var pins = [7, 13, 15, 29, 31, 32, 33, 11, 40, 37, 32, 26, 22, 18, 16, 22]
-
 var rooms = [
-             'skitchen',
-             'sLivingRoom',
-             'sOffice',
-             'sOfficeBathroom',
-             'sNeekon\'sBedroom',
-             'sHomeworkRoom',
-             'sRyan\'sBathroom',
-             'sRyan\'sBedroom',
-             'sDiningRoom',
-             'sGallery',
-             'sGallery2',
-             'sGallery3',
-             'sLivingRoom 2',
-             'sAtrium',
-             'sLivingRoom 3']
-
-function check_connection_status() {
+  'skitchen',
+  'sLivingRoom',
+  'sOffice',
+  'sOfficeBathroom',
+  'sNeekon\'sBedroom',
+  'sHomeworkRoom',
+  'sRyan\'sBathroom',
+  'sRyan\'sBedroom',
+  'sDiningRoom',
+  'sGallery',
+  'sGallery2',
+  'sGallery3',
+  'sLivingRoom 2',
+  'sAtrium',
+  'sLivingRoom 3']
+var num_children = 0
+function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
     if (err && err.code == "ENOTFOUND") {
       console.log(`[ ${chalk.red('ERR')} ]: connection unstable: ping failed`)
       console.log(`[ ${chalk.yellow('EXEC')} ]: spawning offline mode`)
-      var spawn = require('child_process').spawn,
-      child_ = spawn('node', ['offline.js'])
-      console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
-      console.log(`[ ${chalk.blue('i')} ]: Exiting "online.js" => ${process.pid}`)
-      console.log(`[ ${chalk.blue('i')} ]: Commencing new network PING --> "offline.js"`)
-      process.exit(0)
+      if (num_children == 0) {
+        var spawn = require('child_process').spawn,
+        child_ = spawn('node', ['offline.js'])
+        num_children = 1
+        console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: [${chalk.orange(num_children)}] Child(ren) already spawned. Continuing`)
+      }
     } else {
       console.log(`[ ${chalk.green('OK')} ]: connection stable`)
+      if (num_children == 1){
+        console.log(`[ ${chalk.yellow('EXEC')} ]: killing child_process`)
+        var kill = require('kill-process')
+        await kill(child_.pid)
+        num_children = 0
+        console.log(`[ ${chalk.yellow('EXEC')} ]: child_process killed`)
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: Nothing to kill; continuing`)
+      }
     }
   })
 }
-setInterval(check_connection_status, 1000)
+setInterval(master_network_if_manager, 1000)
 
 io.setup(pins[0], io.DIR_OUT, () => {
   db.child(`rooms/${rooms[0]}`)
