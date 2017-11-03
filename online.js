@@ -52,8 +52,7 @@ function master_network_if_manager() {
       console.log(`[ ${chalk.green('OK')} ]: connection stable`)
       if (num_children == 1){
         console.log(`[ ${chalk.yellow('EXEC')} ]: killing child_process`)
-        var kill = require('kill-process')
-        await kill(child_.pid)
+        child_.kill()
         num_children = 0
         console.log(`[ ${chalk.yellow('EXEC')} ]: child_process killed`)
       } else {
