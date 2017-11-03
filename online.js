@@ -70,6 +70,8 @@ io.setup(pins[0], io.DIR_OUT, () => {
     io.write(pins[0], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[0]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -80,6 +82,8 @@ io.setup(pins[1], io.DIR_OUT, () => {
     io.write(pins[1], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[9]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -91,6 +95,8 @@ io.setup(pins[2], io.DIR_OUT, () => {
     io.write(pins[2], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[5]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -101,6 +107,8 @@ io.setup(pins[3], io.DIR_OUT, () => {
     io.write(pins[3], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[1]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -111,6 +119,8 @@ io.setup(pins[4], io.DIR_OUT, () => {
     io.write(pins[4], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[10]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -121,6 +131,8 @@ io.setup(pins[5], io.DIR_OUT, () => {
     io.write(pins[5], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[12]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -131,6 +143,8 @@ io.setup(pins[6], io.DIR_OUT, () => {
     io.write(pins[6], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[8]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -141,6 +155,8 @@ io.setup(pins[7], io.DIR_OUT, () => {
     io.write(pins[7], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[13]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -151,6 +167,8 @@ io.setup(pins[8], io.DIR_OUT, () => {
     io.write(pins[8], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[0]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -161,6 +179,8 @@ io.setup(pins[9], io.DIR_OUT, () => {
     io.write(pins[9], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[14]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -171,6 +191,8 @@ io.setup(pins[10], io.DIR_OUT, () => {
     io.write(pins[10], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[0]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -181,6 +203,8 @@ io.setup(pins[11], io.DIR_OUT, () => {
     io.write(pins[11], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[3]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -191,6 +215,8 @@ io.setup(pins[12], io.DIR_OUT, () => {
     io.write(pins[12], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[2]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -201,6 +227,8 @@ io.setup(pins[13], io.DIR_OUT, () => {
     io.write(pins[13], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[4]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -211,6 +239,8 @@ io.setup(pins[14], io.DIR_OUT, () => {
     io.write(pins[14], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[0]} set => ${snapshot.val()}`)
       }
     })
   })
@@ -221,6 +251,8 @@ io.setup(pins[15], io.DIR_OUT, () => {
     io.write(pins[15], snapshot.val(), (err) => {
       if (err) {
         throw err
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: ${rooms[11]} set => ${snapshot.val()}`)
       }
     })
   })
