@@ -1,10 +1,10 @@
-const newWebpackMiddle = require('webpack-express-middleware')
-const config = require('./webpack.config.js')
-const compiler = require('webpack')(config)
-const express = require('express')
-const colors = require('colors')
-const ip = require('ip')
-const app = express()
+const newWebpackMiddle = require('webpack-express-middleware'),
+ config = require('./webpack.config.js'),
+ compiler = require('webpack')(config),
+ express = require('express'),
+ colors = require('colors'),
+ ip = require('ip'),
+ app = express()
 
 app.set('port', process.env.PORT || 80);
  

@@ -1,8 +1,8 @@
-var io = require('rpi-gpio')
-var fb = require('firebase')
-var chalk = require('chalk')
-var utilLog = require('util').log
-var config = {
+const io = require('rpi-gpio'),
+ fb = require('firebase'), 
+ chalk = require('chalk'), 
+ utilLog = require('util').log, 
+ config = {
   apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
   authDomain: "home-b7104.firebaseapp.com",
   databaseURL: "https://home-b7104.firebaseio.com",
