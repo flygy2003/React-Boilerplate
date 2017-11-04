@@ -6,7 +6,7 @@ class Lights extends Component {
   constructor() {super()}
   turnAllOn() {
     //turn all lights on via setting all db items to true
-    db.offline.find(rooms)
+    var items = db.offline.find()
   }
   turnAllOff() {
     //turn all lights off via setting all db items to false
