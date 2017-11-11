@@ -1,15 +1,113 @@
 import React, {Component} from 'react'
 import Card from './Card.jsx'
-const db = require('diskdb')
-db.connect('../static', ['offline'])
+var mongojs = require('mongojs')
+var db = mongojs('mongodb://10.0.0.159:27017/testdb', ['test']);
+var clrChildren = {}
+var init = {
+  "all": false,
+  "sAtrium": false,
+  "sDiningRoom": false,
+  "sFamilyRoom": false,
+  "sGallery": false,
+  "sGallery2": false,
+  "sGallery3": false,
+  "sGuestBathroom": true,
+  "sHomeworkRoom": false,
+  "sLibrary": false,
+  "sLivingRoom": true,
+  "sLivingRoom 2": false,
+  "sLivingRoom 3": true,
+  "sLivingRoom3": false,
+  "sMasterBathrooms": false,
+  "sMasterBedroom": false,
+  "sNeekon'sBedroom": false,
+  "sOffice": true,
+  "sOfficeBathroom": true,
+  "sRyan'sBathroom": false,
+  "sRyan'sBedroom": false,
+  "skitchen": true
+}
+db.test.insert(clrChildren)
+db.test.insert(test)
 class Lights extends Component {
   constructor() {super()}
   turnAllOn() {
     //turn all lights on via setting all db items to true
-    var items = db.offline.find()
+    db.test.findAndModify({
+      query: {id: 1},
+      update: {
+        $set: {
+          "all": true,
+          "sAtrium": true,
+          "sDiningRoom": true,
+          "sFamilyRoom": true,
+          "sGallery": true,
+          "sGallery2": true,
+          "sGallery3": true,
+          "sGuestBathroom": true,
+          "sHomeworkRoom": true,
+          "sLibrary": true,
+          "sLivingRoom": true,
+          "sLivingRoom 2": true,
+          "sLivingRoom 3": true,
+          "sLivingRoom3": true,
+          "sMasterBathrooms": true,
+          "sMasterBedroom": true,
+          "sNeekon'sBedroom": true,
+          "sOffice": true,
+          "sOfficeBathroom": true,
+          "sRyan'sBathroom": true,
+          "sRyan'sBedroom": true,
+          "skitchen": true}},
+      new: true
+    }, (err, doc, lastErrorObject) => {
+      if(err) {
+        console.log(lastErrorObject)
+        throw err
+      } else {
+        console.log(doc)
+      }
+    })
   }
   turnAllOff() {
     //turn all lights off via setting all db items to false
+    db.test.findAndModify({
+      query: { id: 1 },
+      update: {
+        $set: {
+          "all": false,
+          "sAtrium": false,
+          "sDiningRoom": false,
+          "sFamilyRoom": false,
+          "sGallery": false,
+          "sGallery2": false,
+          "sGallery3": false,
+          "sGuestBathroom": false,
+          "sHomeworkRoom": false,
+          "sLibrary": false,
+          "sLivingRoom": false,
+          "sLivingRoom 2": false,
+          "sLivingRoom 3": false,
+          "sLivingRoom3": false,
+          "sMasterBathrooms": false,
+          "sMasterBedroom": false,
+          "sNeekon'sBedroom": false,
+          "sOffice": false,
+          "sOfficeBathroom": false,
+          "sRyan'sBathroom": false,
+          "sRyan'sBedroom": false,
+          "skitchen": false
+        }
+      },
+      new: true
+    }, (err, doc, lastErrorObject) => {
+      if (err) {
+        console.log(lastErrorObject)
+        throw err
+      } else {
+        console.log(doc)
+      }
+    })
   }
   render() {
     return(
@@ -71,38 +169,57 @@ class Room extends Component {
   componentDidMount() {
     var room = this.props.lumer
     var state
-    ////////Migrate from fb to diskdb////////
-    firebase.database()
-            .ref()
-            .child('/rooms/' + room)
-            .once('value')
-            .then( (snapshot) => {
-      state = snapshot.val()
-      ////////Migrate from fb to diskdb////////
-      this.setState({
-        isToggleOn: state
-      })
+    db.test.findOne({id:1}, (err, doc) => {
+      state = doc[room]
+      console.log(`component mounted & state of ${room} == ${state}`)
     })
-    ////////Migrate from fb to diskdb////////
-    var listener = firebase.database().ref().child('/rooms/' + room)
-    listener.on("value", (snapshot) => {
-      state = snapshot.val()
-      ////////Migrate from fb to diskdb////////
-      this.setState({
-        isToggleOn: state
-      })
+    this.setState({
+      isToggleOn: state
     })
+    ///////////////////STREAM/LISTENER SECTION////////////////////
+    ////////Migrate from fb to diskdb////////
+    //set cursor for listener on event emitter
+    var cursor = db.test.find({id: 1}, {}, { tailable: true, timeout: false })
+    // since all cursors are streams we can just listen for data
+    //listen for changes and function for consequent subroutine
+    // cursor.on('data', function (doc) {
+    //   console.log('new document', doc)
+    //   this.setState({
+    //     isToggleOn: state
+    //   })
+    // })
+    ////////Migrate from fb to diskdb////////
+    //set react state to synced global state
+
     // console.log(this.props.lumer + ': mounted!' )
+    ///////////////////CLOSE STREAM/LISTENER SECTION////////////////////
   }
   handleClick() {
+    //initialize procedurally generated object
     var room = this.props.lumer
+    var obj = {}
+    //toggle domestic state of button
     this.setState( prevState => ({
       isToggleOn: !prevState.isToggleOn
     }) )
-    ////////Migrate from fb to diskdb////////
-    firebase.database().ref().child('/rooms/' + this.props.lumer).set(!this.state.isToggleOn)
-    ////////Migrate from fb to diskdb////////
-    // console.log(this.props.lumer + ": " + !this.state.isToggleOn)
+    //save state in domestic variable
+    var mState = !this.state.isToggleOn
+    //set key to var room & value to var mState
+    obj[room] = mState
+    //find current collection
+    //update current attribute via var obj (procedurally generated)
+    db.test.findAndModify({
+      query: {"id": 1},
+      update: {$set: obj},
+      new: true
+    }, /*function callback with stats & err*/(err, doc, lastErrorObject) => {
+      if (err) {
+        console.log(lastErrorObject)
+        throw err
+      } else {
+        console.log(doc)
+      }
+    })
   }
   render() {
     return (

@@ -1,91 +1,66 @@
-var db = require("diskdb")
-db.connect("src/static", ["offline"])
-var r1 = {
-  name: "all",
-  state: false
+var JSONStream = require('JSONStream')
+var mongojs = require('mongojs')
+var db = mongojs('mongodb://10.0.0.159:27017/testdb', ['test'])
+
+var test = {
+  "id": 1,
+  "all": false,
+  "sAtrium": false,
+  "sDiningRoom": false,
+  "sFamilyRoom": false,
+  "sGallery": false,
+  "sGallery2": false,
+  "sGallery3": false,
+  "sGuestBathroom": false,
+  "sHomeworkRoom": false,
+  "sLibrary": false,
+  "sLivingRoom": false,
+  "sLivingRoom 2": false,
+  "sLivingRoom 3": false,
+  "sLivingRoom3": false,
+  "sMasterBathrooms": false,
+  "sMasterBedroom": false,
+  "sNeekon'sBedroom": false,
+  "sOffice": false,
+  "sOfficeBathroom": false,
+  "sRyan'sBathroom": false,
+  "sRyan'sBedroom": false,
+  "skitchen": false
 }
-var r1 = {
-  name: "sAtrium",
-  state: false
-}
-var r2 = {
-  name: "sDiningRoom",
-  state: false
-}
-var r3 = {
-  name: "sFamilyRoom",
-  state: false
-}
-var r4 = {
-  name: "sGallery",
-  state: false
-}
-var r5 = {
-  name: "sGallery2",
-  state: false
-}
-var r6 = {
-  name: "sGallery3",
-  state: false
-}
-var r7 = {
-  name: "sGuestBathroom",
-  state: false
-}
-var r8 = {
-  name: "sHomeworkRoom",
-  state: false
-}
-var r9 = {
-  name: "sLivingRoom",
-  state: false
-}
-var r10 = {
-  name: "sLivingRoom 2",
-  state: false
-}
-var r11 = {
-  name: "sLivingRoom 3",
-  state: false
-}
-var r12 = {
-  name: "sMasterBathrooms",
-  state: false
-}
-var r13 = {
-  name: "sMasterBedroom",
-  state: false
-}
-var r14 = {
-  name: "sNeekon'sBedroom",
-  state: false
-}
-var r15 = {
-  name: "sOffice",
-  state: false
-}
-var r16 = {
-  name: "sOfficeBathroom",
-  state: false
-}
-var r17 = {
-  name: "sRyan'sBathroom",
-  state: false
-}
-var r18 = {
-  name: "sRyan'sBedroom",
-  state: false
-}
-var r19 = {
-  name: "skitchen",
-  state: false
-}
-var i = 1
-var collections = []
-for (i; i<=19; i++) {
-  var single = `r${i}`
-  collections.push(single)
-}
-db.offline.save([r1])
-console.log(collections)
-console.log(db.offline.find())
+// var state = true
+// var room = "sOffice"
+// var obj = {}
+// obj[room] = state
+// db.test.insert(test)
+
+// // db.test.findOne({"id": 1}, function(err, doc){
+// //   console.log(doc['sOffice'])
+// //   console.log(doc)
+// // })
+
+// pipe all documents in mycollection to stdout
+
+var cursor = db.test.find(
+  {"id": 1}, 
+{"sMasterBedroom": true}, 
+{ 
+  tailable: true, 
+  timeout: false 
+}).pipe(JSONStream.parse(['sMasterBedroom', { emitKey: true }]))
+cursor.on('data', function (data) {
+  console.log('key:', data.key);
+  console.log('value:', data.value);
+})
+
+// // db.test.findAndModify({
+// //   query: { "id": 1 },
+// //   update: { $set: obj },
+// //   new: true
+// // }, (err, doc, lastErrorObject) => {
+// //   if (err) {
+// //     console.log(lastErrorObject)
+// //     throw err
+// //   } else {
+// //     console.log(doc)
+// //   }
+// // })
