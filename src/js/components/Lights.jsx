@@ -17,6 +17,7 @@ class Lights extends Component {
     return(
       <Card>
         <ul className="flex-container">
+            
           {[
             {room: 'kitchen'},
             {room: 'Living Room'},
@@ -33,7 +34,6 @@ class Lights extends Component {
             {room: 'Family Room'},
             {room: 'Master Bedroom'},
             {room: 'Master Bathrooms'},
-            {room: 'all'}
           ].map((item, i) => {
             return(
               <Room lumer={(item.room != "all") ? "s" + item.room.replace(" ", "") : item.room} key={i}>{item.room}</Room>
@@ -109,6 +109,21 @@ class Room extends Component {
         <li onClick={this.handleClick} className={this.state.isToggleOn ? "room on" : "room off"}>
           {this.state.isToggleOn ? this.props.children + ': ON' : this.props.children + ': OFF'}
         </li>
+    )
+  }
+}
+
+class AllLights extends Component {
+  render() {
+    return(
+      <div>
+        <span className="room on">
+          All On
+        </span>
+        <span className="room off">
+        
+        </span>
+      </div>
     )
   }
 }
