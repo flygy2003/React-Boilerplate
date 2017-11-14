@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Card from './Card.jsx'
 var mongojs = require('mongojs')
+var io = require('socket.io')(8080)
 var db = mongojs('mongodb://10.0.0.159:27017/testdb', ['test']);
 var clrChildren = {}
 var init = {
