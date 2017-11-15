@@ -1,6 +1,7 @@
 $milk: #e0d0d0;
 $background_dark: #1e1d1d;
 $black: #000000;
+$steel: #202838;
 
 body {
   margin: 0;
@@ -9,16 +10,22 @@ body {
   background: $background_dark;
   .toolbar {
     .arrow {
+      height: 30px;
+      padding: 20px;
       display: inline-block;
       &.down {
         display: inline-block;
-        padding: 16px;
-        height: 45px;
+        transform: rotate(0deg);
+        transform-origin: 50 50;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
       }
       &.up {
         display: inline-block;
-        padding: 16px;
-        height: 45px;
+        transform: rotate(180deg);
+        transform-origin: 50 50;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
       }
     }
     #logo {
@@ -41,7 +48,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 10%;
     margin-bottom: 80px;
     width: 62%;
     height: 62%;
@@ -52,7 +59,7 @@ body {
     border-style: solid;
     background-color: $background_dark;
     .flex-container {
-      float: left;
+      margin: auto;
       list-style: none;
       list-style-type: none;
       display: -webkit-box;
@@ -61,6 +68,7 @@ body {
       display: -moz-flex;
       display: -webkit-flex;
       display: flex;
+      justify-content: center;  
       flex-wrap: wrap;
       flex-direction: row;
       height: 100%;
@@ -70,59 +78,143 @@ body {
       -webkit-margin-start: 0;
       -webkit-margin-end: 0;
       -webkit-padding-start: 0;
-      .room {
-        position: relative;
-        margin: auto;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        user-select: none;
-        cursor: pointer;
-        display: block;
-        width: 450px;
+      .link-wrapper {
+        width: auto;
         height: auto;
-        font-family: 'Fjalla One', sans-serif;
-        font-size: 275%;
-        &.on {
-          animation-delay: 0ms;
-          animation-duration: 0.25s;
-          animation-name: milker;
-          animation-iteration-count: 1;
-          animation-timing-function: ease-out;
-          @at-root {
-            @keyframes milker {
-              from {color: $black}
+        display: block;
+        position: relative;
+        .room {
+          padding: 7.5px;
+          border-width: 4px;
+          border-style: solid;
+          border-color:  $milk;
+          border-radius: 15px;
+          position: relative;
+          margin: auto;
+          margin: 20px;
+          user-select: none;
+          cursor: pointer;
+          display: block;
+          width: 350px;
+          height: auto;
+          font-family: 'Fjalla One', sans-serif;
+          font-size: 275%;
+          &.on {
+            animation-delay: 0ms;
+            animation-duration: 0.25s;
+            animation-name: milker;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            @at-root {
+              @keyframes milker {
+                from {color: $steel}
+              }
             }
+            color: $milk;
           }
-          color: $milk;
-        }
-        &.off {
-          animation-delay: 0ms;
-          animation-duration: 0.25s;
-          animation-name: darker;
-          animation-iteration-count: 1;
-          animation-timing-function: ease-out;
-          @at-root {
-            @keyframes darker {
-              from {color: $milk}
-              to {color: $black}
+          &.off {
+            animation-delay: 0ms;
+            animation-duration: 0.25s;
+            animation-name: darker;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            @at-root {
+              @keyframes darker {
+                from {color: $milk}
+                to {color: $steel}
+              }
             }
+            -webkit-text-stroke: 0.5px $milk;
+            color: $steel;
           }
-          color: $black;
         }
       }
     }
   }
+  .allLights {
+    padding: 7.5px;
+    border-width: 4px;
+    border-style: solid;
+    border-color:  $milk;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 350px;
+    height: 55px;
+    margin: 20px;
+    font-family: 'Fjalla One', sans-serif;
+    .on {
+      cursor: pointer;
+      margin-top: 7.5px;
+      margin-right: 20px;
+      height: 40px;
+      font-size: 2em;
+      display: inline-block;
+      color: $milk;
+    }
+    .off {
+      cursor: pointer;
+      margin-top: 7.5px;
+      margin-left: 20px;
+      height: 40px;
+      font-size: 2em;
+      display: inline-block;
+      -webkit-text-stroke: 0.5px $milk;
+      color: $steel;
+    }
+  }
   @media only screen and (max-width: 600px) {
     .cardContainer {
-      .room {
-        margin: 0;
-        height: 10px;
-        width: 100px;
-        font-size: auto;
+      min-width: 0;
+      width: 240px;
+      margin-top: 45px;
+      height: auto;
+      .flex-container {
+        float: left;
+        display: block;
+        .link-wrapper {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          padding: none;
+          max-width: 250px;
+          margin-bottom: 10px;
+          &.all {
+          max-width: 250px;
+          border-style: solid;
+          border-color: $milk;
+          border-top-width: 0px;
+          border-bottom-width: 2.5px;
+          border-right-width: 0px;
+          border-left-width: 0px;
+          }
+          &.else {
+          max-width: 250px;
+          border-style: none;
+          border-color: #1e1d1d;
+          border-top-width: 0px;
+          border-bottom-width: 0px;
+          border-right-width: 0px;
+          border-left-width: 0px;
+          }
+          .room {
+            margin: auto;
+            padding: none;
+            text-align: center;
+            max-width: 250px;
+            border-style: none;
+            border-color: #1e1d1d;
+            border-top-width: 0px;
+            border-bottom-width: 0px;
+            border-right-width: 0px;
+            border-left-width: 0px;
+          }
+        }
       }
     }
     .arrow {
-      margin: auto;
+      margin-left: 35px;
     }
     #footer {
       width: 95%;
@@ -134,10 +226,18 @@ body {
       left: 40%;
       top: 30px;
     }
+    .allLights {
+      max-width: 220px;
+      margin: auto;
+      border-style: none;
+    }
   }
   @media only screen and (max-width: 400px) {
     #logo {
       height: 40px;
+    }
+    .arrow {
+      margin-left: 0px;
     }
     #footer {
       margin: auto;
