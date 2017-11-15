@@ -121,7 +121,6 @@ class AllLights extends Component {
           All On
         </span>
         <span className="room off">
-        
         </span>
       </div>
     )
