@@ -47,26 +47,15 @@ const newWebpackMiddle = require('webpack-express-middleware'),
   }
   
   io.on('connection', (socket) => {
-    socket.on('switchOn', (data) => {
-      console.log(data)
-      switchSingle(data, true)
-    })
-    socket.on('switchOff', (data) => {
-      console.log(data)
-      switchSingle(data, false)
-    })
-    socket.on('allOn', (data) => {
-      console.log(data)
-      rooms.forEach(item => {
+    socket.on('switchOn', (data) => switchSingle(data, true))
+    socket.on('switchOff', (data) => switchSingle(data, false))
+    socket.on('allOn', (data) => rooms.forEach(item => {
         switchSingle(item, true)
-      })
-    })
-    socket.on('allOff', (data) => {
-      console.log(data)
-      rooms.forEach(item => {
+      }) )
+    socket.on('allOff', (data) => rooms.forEach(item => {
         switchSingle(item, false)
       })
-    })
+    )
 })
 app.set('port', process.env.PORT || 80)
 
