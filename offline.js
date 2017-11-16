@@ -12,34 +12,60 @@ const newWebpackMiddle = require('webpack-express-middleware'),
 
   var rooms = {
     'kitchen': [7, 40, 36, 16],
-    'livingroom': 31,
-    'livingroom2': 15,
-    'livingroom3': 38,
-    'gallery': 35,
-    'gallery2': 29,
-    'gallery3': 12,
+    'livingroom': [31],
+    'livingroom2': [15],
+    'livingroom3': [38],
+    'gallery': [35],
+    'gallery2': [29],
+    'gallery3': [12],
     'office': [22, 32],
-    'neekonsbedroom': 18,
-    'homeworkroom': 33,
-    'diningroom': 13,
-    'atrium': 11
+    'neekonsbedroom': [18],
+    'homeworkroom': [33],
+    'diningroom': [13],
+    'atrium': [11]
   }
   function switchSingle(id, state) {
-    sw.setup(rooms.id, sw.DIR_OUT, () => {
-      sw.write(rooms.id, state, (err) => {
-        if (err) {
-          throw err
-        }
+    if(rooms[id].length == 1) {
+      sw.setup(rooms[id], sw.DIR_OUT, () => {
+        sw.write(rooms[id], state, (err) => {
+          if (err) {
+            throw err
+          }
+        })
       })
-    })
+    } if(rooms[id].length >= 1) {
+      rooms[id].forEach(value => {
+        sw.setup(rooms[id], sw.DIR_OUT, () => {
+          sw.write(rooms[id], value, (err) => {
+            if (err) {
+              throw err
+            }
+          })
+        })
+      })
+    }
   }
   
   io.on('connection', (socket) => {
-    socket.on('switch', (data) => {
+    socket.on('switchOn', (data) => {
       console.log(data)
+      switchSingle(data, true)
     })
-    socket.on('all', (data) => {
+    socket.on('switchOff', (data) => {
       console.log(data)
+      switchSingle(data, false)
+    })
+    socket.on('allOn', (data) => {
+      console.log(data)
+      rooms.forEach(item => {
+        switchSingle(item, true)
+      })
+    })
+    socket.on('allOff', (data) => {
+      console.log(data)
+      rooms.forEach(item => {
+        switchSingle(item, false)
+      })
     })
 })
 app.set('port', process.env.PORT || 80)

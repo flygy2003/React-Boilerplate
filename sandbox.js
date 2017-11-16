@@ -13,6 +13,6 @@
     'atrium': 11
   }
 function switchOne(id) {
-  console.log(rooms.id)
+  console.log(rooms[id])
 }
 switchOne('office')
