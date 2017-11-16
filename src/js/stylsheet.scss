@@ -97,35 +97,19 @@ body {
           display: block;
           width: 350px;
           height: auto;
-          font-family: 'Fjalla One', sans-serif;
-          font-size: 275%;
-          &.on {
-            animation-delay: 0ms;
-            animation-duration: 0.25s;
-            animation-name: milker;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-out;
-            @at-root {
-              @keyframes milker {
-                from {color: $steel}
-              }
+          .text {
+            font-family: 'Fjalla One', sans-serif;
+            font-size: 175%;
+            &.title {
+              color: milk;
             }
-            color: $milk;
-          }
-          &.off {
-            animation-delay: 0ms;
-            animation-duration: 0.25s;
-            animation-name: darker;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-out;
-            @at-root {
-              @keyframes darker {
-                from {color: $milk}
-                to {color: $steel}
-              }
+            &.on {
+              color: $milk;
             }
-            -webkit-text-stroke: 0.5px $milk;
-            color: $steel;
+            &.off {
+              -webkit-text-stroke: 0.5px $milk;
+              color: $steel;
+            }
           }
         }
       }

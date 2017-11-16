@@ -4,7 +4,7 @@ const newWebpackMiddle = require('webpack-express-middleware'),
   colors = require('colors'),
   config = require('./webpack.config.js'),
   app = express(),
-  io = require('socket.io')(8080),
+  io = require('socket.io')(http),
   ip = require('ip'),
   sw = require('rpi-gpio'),
   webpack = newWebpackMiddle(compiler, config)
@@ -27,20 +27,12 @@ const newWebpackMiddle = require('webpack-express-middleware'),
   function switchSingle(id, state) {
     if(rooms[id].length == 1) {
       sw.setup(rooms[id], sw.DIR_OUT, () => {
-        sw.write(rooms[id], state, (err) => {
-          if (err) {
-            throw err
-          }
-        })
+        sw.write(rooms[id], state, (err) => {if (err) {throw err}})
       })
     } if(rooms[id].length >= 1) {
       rooms[id].forEach(value => {
         sw.setup(rooms[id], sw.DIR_OUT, () => {
-          sw.write(rooms[id], value, (err) => {
-            if (err) {
-              throw err
-            }
-          })
+          sw.write(rooms[id], value, (err) => {if (err) {throw err}})
         })
       })
     }
@@ -49,13 +41,8 @@ const newWebpackMiddle = require('webpack-express-middleware'),
   io.on('connection', (socket) => {
     socket.on('switchOn', (data) => switchSingle(data, true))
     socket.on('switchOff', (data) => switchSingle(data, false))
-    socket.on('allOn', (data) => rooms.forEach(item => {
-        switchSingle(item, true)
-      }) )
-    socket.on('allOff', (data) => rooms.forEach(item => {
-        switchSingle(item, false)
-      })
-    )
+    socket.on('allOn', ()=>rooms.forEach(item =>{switchSingle(item, true)}))
+    socket.on('allOff',()=>rooms.forEach(item=>{switchSingle(item, false)}))
 })
 app.set('port', process.env.PORT || 80)
 
