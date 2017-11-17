@@ -3,13 +3,48 @@ import Card from './Card.jsx'
 var io = require('socket.io'),
     socket = io()
 class Lights extends Component {
-  constructor() {super()}
+  constructor() {
+    super()
+    socket.on('=>online<=', () => {
+      window.location.href = '54.153.103.41'
+    })
+  }
   turnAllOn() {socket.emit('allOn')}
   turnAllOff() {socket.emit('allOff')}
   render() {
+    var dbnames = 
+    [
+      'kitchen',
+      'livingroom',
+      'livingroom2',
+      'livingroom3',
+      'gallery',
+      'gallery2',
+      'gallery3',
+      'office',
+      'neekonsbedroom',
+      'homeworkroom',
+      'diningroom',
+      'atrium'
+    ].sort()
+    var roomies = 
+      [
+        'Atrium',
+        'kitchen',
+        'Living Room',
+        'Living Room 2',
+        'Living Room 3',
+        'Office',
+        'Neekon\'s Bedroom',
+        'Homework Room',
+        'Dining Room',
+        'Gallery',
+        'Gallery 2',
+        'Gallery 3'
+      ].sort()
     return(
       <Card>
-        <ul className="flex-container">
+        <ul className='flex-container'>
           <div className='link-wrapper all'>
             <div className='allLights'>
               <div className='on' onClick={this.turnAllOn.bind(this)}>
@@ -19,34 +54,86 @@ class Lights extends Component {
                 None
               </div>
             </div>
-            <room Name={'kitchen'}>
-              Kitchen
-            </room>
           </div>
+          {
+            roomies.forEach((item, i) => {
+              return (
+                <div className={item == roomies.slice(-1)[0] ? 'link-wrapper else' : 'link-wrapper all'}>
+                  <Room lumer={dbnames[i]} key={i}>{item}</Room>
+                </div>
+              )
+            })
+          }
         </ul>
       </Card>
     )
   }
 }
 class room extends Component {
-  constructor(props){
+
+  constructor(props) {
     super(props)
+    this.state = { isToggleOn: false }
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this)
   }
-  on() {socket.emit('switchOn', this.props.Name)}
-  off() {socket.emit('switchOff', this.props.Name)}
+
+  componentDidMount() {
+    var room = this.props.lumer
+    var state
+    ////////Migrate from fb to diskdb////////
+    // firebase.database()
+    //   .ref()
+    //   .child('/rooms/' + room)
+    //   .once('value')
+    //   .then((snapshot) => {
+    //     state = snapshot.val()
+    //     ////////Migrate from fb to diskdb////////
+    //   })
+    socket.emit('req', room)
+    socket.on(`res${room}`, (data) => {
+      state = data
+      this.setState({
+        isToggleOn: state
+      })
+    })
+    ////////Migrate from fb to diskdb////////
+    // var listener = firebase.database().ref().child('/rooms/' + room)
+    // listener.on('value', (snapshot) => {
+    //   state = snapshot.val()
+    //   ////////Migrate from fb to diskdb////////
+    //   this.setState({
+    //     isToggleOn: state
+    //   })
+    // })
+    socket.on(`rt${room}`, (data) => {
+      state = data
+      this.setState({
+        isToggleOn: state
+      })
+    })
+    // console.log(this.props.lumer + ': mounted!' )
+  }
+  handleClick() {
+    var room = this.props.lumer
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }))
+    ////////Migrate from fb to diskdb////////
+    // firebase.database().ref().child('/rooms/' + this.props.lumer).set(!this.state.isToggleOn)
+    ////////Migrate from fb to diskdb////////
+    // console.log(this.props.lumer + ': ' + !this.state.isToggleOn)
+    if(this.state.isToggleOn) {
+      socket.emit('switchOn', room)
+    } if(!this.state.isToggleOn) {
+      socket.emit('switchOff', room)
+    }
+  }
   render() {
-    return(
-      <div className='room'>
-        <div className='text title'>
-          {this.props.children}
-        </div>
-        <div className='text on' onClick={this.on.bind(this)}>
-          On
-        </div>
-        <div className='text off' onClick={this.off.bind(this)}>
-          Off
-        </div>
-      </div>
+    return (
+      <li onClick={this.handleClick} className={this.state.isToggleOn ? 'room on' : 'room off'}>
+        {this.props.children}
+      </li>
     )
   }
 }
