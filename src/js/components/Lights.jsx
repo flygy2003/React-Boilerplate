@@ -91,11 +91,13 @@ class room extends Component {
     //     ////////Migrate from fb to diskdb////////
     //   })
     socket.emit('req', room)
-    socket.on(`res${room}`, (data) => {
-      state = data
-      this.setState({
-        isToggleOn: state
-      })
+    socket.on(`res`, (data) => {
+      if (data.item == room) {
+        state = data.data
+        this.setState({
+          isToggleOn: state
+        })
+      }
     })
     ////////Migrate from fb to diskdb////////
     // var listener = firebase.database().ref().child('/rooms/' + room)
@@ -106,11 +108,13 @@ class room extends Component {
     //     isToggleOn: state
     //   })
     // })
-    socket.on(`rt${room}`, (data) => {
-      state = data
-      this.setState({
-        isToggleOn: state
-      })
+    socket.on(`rt`, (data) => {
+      if (data.item == room || data.item == 'all') {
+        state = data.data
+        this.setState({
+          isToggleOn: state
+        })
+      }
     })
     // console.log(this.props.lumer + ': mounted!' )
   }
