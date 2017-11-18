@@ -75,26 +75,26 @@ function master_network_if_manager() {
 io.on('connection', (socket) => {
   setInterval(master_network_if_manager, 500)
   socket.on('req', (data) => {
-    socket.emit(`res`, {item: data, data: states[data]})
+    socket.emit(`res`, {id: data, data: states[data]})
   })
   socket.on('switchOn', (data) => {
     switchSingle(data, true)
-    socket.broadcast.emit(`rt`, {item: data, data: true})
+    socket.broadcast.emit(`rt`, {id: data, data: true})
   })
   socket.on('switchOff', (data) => {
     switchSingle(data, false)
-    socket.broadcast.emit(`rt`, {item: data, data: false})
+    socket.broadcast.emit(`rt`, {id: data, data: false})
   })
   socket.on('allOn', () => {
     rooms.forEach(item => {
       switchSingle(item, true)
-      socket.broadcast.emit(`rt`, {item: 'all', data: true})
+      socket.broadcast.emit(`rt`, {id: 'all', data: true})
     })
   })
   socket.on('allOff', () => {
     rooms.forEach(item => {
       switchSingle(item, false)
-      socket.broadcast.emit(`rt`, {item: 'all', data: false})
+      socket.broadcast.emit(`rt`, {id: 'all', data: false})
     })
   })
 })
