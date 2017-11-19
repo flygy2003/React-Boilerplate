@@ -57,7 +57,7 @@ var combo = {
             })
         })
       } if (combo[item].length >= 1) {
-        combo[item].forEach((value) => {
+        combo[item].forEach((item) => {
           io.setup(combo[item], io.DIR_OUT, () => {
             db.child(`rooms/${item}`)
               .on('value', (snapshot) => {
