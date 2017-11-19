@@ -43,7 +43,7 @@ var combo = {
     'sLivingRoom 3'],
     num_children = 0
     rooms.forEach(item => {
-      if (rooms[item].length == 1) {
+      if (combo[item].length == 1) {
         io.setup(combo[item], io.DIR_OUT, () => {
           db.child(`rooms/${item}`)
             .on('value', (snapshot) => {
