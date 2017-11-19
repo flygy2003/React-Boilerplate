@@ -42,36 +42,21 @@ var combo = {
     'sAtrium',
     'sLivingRoom 3'],
     num_children = 0
-    rooms.forEach(item => {
-      if (combo[item].length == 1) {
-        io.setup(combo[item], io.DIR_OUT, () => {
-          db.child(`rooms/${item}`)
-            .on('value', (snapshot) => {
-              io.write(combo[item], snapshot.val(), (err) => {
-                if (err) {
-                  throw err
-                } else {
-                  console.log(`[ ${chalk.blue('i')} ]: ${item} set => ${snapshot.val()}`)
-                }
-              })
+  rooms.forEach(item => {
+    combo[item].forEach((item) => {
+      io.setup(combo[item], io.DIR_OUT, () => {
+        db.child(`rooms/${item}`)
+          .on('value', (snapshot) => {
+            io.write(combo[item], snapshot.val(), (err) => {
+              if (err) {
+                throw err
+              } else {
+                console.log(`[ ${chalk.blue('i')} ]: ${item} set => ${snapshot.val()}`)
+              }
             })
-        })
-      } if (combo[item].length >= 1) {
-        combo[item].forEach((item) => {
-          io.setup(combo[item], io.DIR_OUT, () => {
-            db.child(`rooms/${item}`)
-              .on('value', (snapshot) => {
-                io.write(combo[item], snapshot.val(), (err) => {
-                  if (err) {
-                    throw err
-                  } else {
-                    console.log(`[ ${chalk.blue('i')} ]: ${item} set => ${snapshot.val()}`)
-                  }
-                })
-              })
           })
-        })
-      }
+      })
+    })
   })
 function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
