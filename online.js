@@ -43,11 +43,11 @@ var combo = {
     'sLivingRoom 3'],
     num_children = 0
   rooms.forEach(item => {
-    combo[item].forEach((item) => {
-      io.setup(combo[item], io.DIR_OUT, () => {
+    combo[item].forEach((items) => {
+      io.setup(items, io.DIR_OUT, () => {
         db.child(`rooms/${item}`)
           .on('value', (snapshot) => {
-            io.write(combo[item], snapshot.val(), (err) => {
+            io.write(items, snapshot.val(), (err) => {
               if (err) {
                 throw err
               } else {
