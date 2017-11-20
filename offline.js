@@ -51,17 +51,11 @@ var states = {
   'atrium': true
 }
 function switchSingle(id, state) {
-  if(rooms[id].length == 1) {
-    sw.setup(rooms[id], sw.DIR_OUT, () => {
-      sw.write(rooms[id], state, (err) => {if (err) {throw err}})
+  rooms[id].forEach((value) => {
+    sw.setup(value, sw.DIR_OUT, () => {
+      sw.write(value, value, (err) => {if (err) {throw err}})
     })
-  } if(rooms[id].length >= 1) {
-    rooms[id].forEach(value => {
-      sw.setup(rooms[id], sw.DIR_OUT, () => {
-        sw.write(rooms[id], value, (err) => {if (err) {throw err}})
-      })
-    })
-  }
+  })
 }
 function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
