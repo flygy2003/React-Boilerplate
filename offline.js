@@ -9,7 +9,7 @@ const newWebpackMiddle = require('webpack-express-middleware'),
   sw = require('rpi-gpio'),
   webpack = newWebpackMiddle(compiler, config)
   webpack(app)
-  app.set('port', process.env.PORT || 80)
+  app.set('port', process.env.PORT || 7575)
   
   app.use('*', express.static(__dirname + '/src/static'))
   
