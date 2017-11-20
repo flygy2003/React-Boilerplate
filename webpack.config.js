@@ -7,7 +7,7 @@ module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
   entry: "./js/client.js",
   module: {
-    noParse: ['ws'],
+    noParse: ['fs', 'ws'],
     loaders: [
       {
         test: /\.jsx?$/,
