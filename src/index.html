@@ -12,9 +12,7 @@
     <script src="client.min.js"></script>
     <script>
       function master_network_if_manager() {
-        require('dns').lookup('google.com', function (err) {
-          if (err && err.code == "ENOTFOUND") { location.href = '10.0.0.159' }
-        })
+        if (navigator.onLine) { location.href = '10.0.0.159' }
       }
       setInterval(master_network_if_manager, 500)
     </script>
