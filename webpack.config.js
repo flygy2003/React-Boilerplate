@@ -7,6 +7,7 @@ module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
   entry: "./js/client.js",
   module: {
+    noParse: ['ws'],
     loaders: [
       {
         test: /\.jsx?$/,
@@ -41,4 +42,5 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
+  externals: ['ws']
 };
