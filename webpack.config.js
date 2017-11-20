@@ -46,5 +46,5 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
-  externals: ['ws']
+  externals: ['fs', 'ws']
 };
