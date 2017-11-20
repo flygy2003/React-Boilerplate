@@ -69,7 +69,7 @@ function master_network_if_manager() {
         num_children = 1
         console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
       } else {
-        console.log(`[ ${chalk.blue('i')} ]: [${chalk.orange(num_children)}] Child(ren) already spawned. Continuing`)
+        console.log(`[ ${chalk.blue('i')} ]: [${chalk.yellow(num_children)}] Child(ren) already spawned. Continuing`)
       }
     } else {
       console.log(`[ ${chalk.green('OK')} ]: connection stable`)
