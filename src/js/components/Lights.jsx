@@ -160,22 +160,4 @@ class Room extends Component {
     )
   }
 }
-<<<<<<< HEAD
-
-class AllLights extends Component {
-  render() {
-    return(
-      <div>
-        <span className="room on">
-          All On
-        </span>
-        <span className="room off">
-        </span>
-      </div>
-    )
-  }
-}
-
-=======
->>>>>>> 3e99c7219db5abec379f9bc76496feee0009c02b
 export default Lights
