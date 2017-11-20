@@ -11,6 +11,6 @@ export default class Layout extends React.Component {
           <Lights/>
         </body>
       </div>
-    );
+    )
   }
 }

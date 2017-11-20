@@ -69,6 +69,26 @@ class Lights extends Component {
     return(
       <Card>
         <ul className="flex-container">
+<<<<<<< HEAD
+            
+          {[
+            {room: 'kitchen'},
+            {room: 'Living Room'},
+            {room: 'Office'},
+            {room: 'Office Bathroom'},
+            {room: 'Neekon\'s Bedroom'},
+            {room: 'Homework Room'},
+            {room: 'Ryan\'s Bathroom'},
+            {room: 'Ryan\'s Bedroom'},
+            {room: 'Dining Room'},
+            {room: 'Gallery'},
+            {room: 'Guest Bathroom'},
+            {room: 'Library'},
+            {room: 'Family Room'},
+            {room: 'Master Bedroom'},
+            {room: 'Master Bathrooms'},
+          ].map((item, i) => {
+=======
         <div className='link-wrapper all'>
           <div className='allLights'>
             <div className='on' onClick={this.turnAllOn.bind(this)}>
@@ -100,6 +120,7 @@ class Lights extends Component {
              'Master Bedroom',
              'Master Bathrooms'
           ].sort().map((item, i) => {
+>>>>>>> 3e99c7219db5abec379f9bc76496feee0009c02b
             return(
               <div className={i == 17 ? "link-wrapper else" : "link-wrapper all"}>
                 <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
@@ -160,4 +181,22 @@ class Room extends Component {
     )
   }
 }
+<<<<<<< HEAD
+
+class AllLights extends Component {
+  render() {
+    return(
+      <div>
+        <span className="room on">
+          All On
+        </span>
+        <span className="room off">
+        </span>
+      </div>
+    )
+  }
+}
+
+=======
+>>>>>>> 3e99c7219db5abec379f9bc76496feee0009c02b
 export default Lights
