@@ -59,27 +59,29 @@ var combo = {
     })
   })
 function master_network_if_manager() {
-  if (navigator.onLine == false) {
-    console.log(`[ ${chalk.red('ERR')} ]: connection unstable: ping failed`)
-    console.log(`[ ${chalk.yellow('EXEC')} ]: spawning offline mode`)
-    if (num_children == 0) {
-      var spawn = require('child_process').spawn,
-      child_ = spawn('node', ['offline.js'])
-      num_children = 1
-      console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
+  require('dns').lookup('google.com', function (err) {
+    if (err && err.code == "ENOTFOUND") {
+      console.log(`[ ${chalk.red('ERR')} ]: connection unstable: ping failed`)
+      console.log(`[ ${chalk.yellow('EXEC')} ]: spawning offline mode`)
+      if (num_children == 0) {
+        var spawn = require('child_process').spawn,
+        child_ = spawn('node', ['offline.js'])
+        num_children = 1
+        console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: [${chalk.yellow(num_children)}] Child(ren) already spawned. Continuing`)
+      }
     } else {
-      console.log(`[ ${chalk.blue('i')} ]: [${chalk.yellow(num_children)}] Child(ren) already spawned. Continuing`)
+      console.log(`[ ${chalk.green('OK')} ]: connection stable`)
+      if (num_children == 1){
+        console.log(`[ ${chalk.yellow('EXEC')} ]: killing child_process`)
+        child_.kill()
+        num_children = 0
+        console.log(`[ ${chalk.yellow('EXEC')} ]: child_process killed`)
+      } else {
+        console.log(`[ ${chalk.blue('i')} ]: Nothing to kill; continuing`)
+      }
     }
-  } else {
-    console.log(`[ ${chalk.green('OK')} ]: connection stable`)
-    if (num_children == 1){
-      console.log(`[ ${chalk.yellow('EXEC')} ]: killing child_process`)
-      child_.kill()
-      num_children = 0
-      console.log(`[ ${chalk.yellow('EXEC')} ]: child_process killed`)
-    } else {
-      console.log(`[ ${chalk.blue('i')} ]: Nothing to kill; continuing`)
-    }
-  }
+  })
 }
 setInterval(master_network_if_manager, 1000)
