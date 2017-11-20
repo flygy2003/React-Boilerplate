@@ -1,8 +1,9 @@
 const newWebpackMiddle = require('webpack-express-middleware'),
   config = require('./webpack.config.js'),
   compiler = require('webpack')(config),
-  app = require('express')(),
-  server = require('http').Server(app)
+  express = require('express'),
+  app = express(),
+  server = require('http').Server(app),
   io = require('socket.io')(server),
   colors = require('colors'),
   ip = require('ip'),
