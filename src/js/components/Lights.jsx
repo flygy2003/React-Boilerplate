@@ -6,7 +6,7 @@ class Lights extends Component {
   constructor() {
     super()
     socket.on('=>online<=', () => {
-      window.location.href = '54.153.103.41'
+      window.location.href = 'http://54.153.103.41'
     })
   }
   turnAllOn() {socket.emit('allOn')}
