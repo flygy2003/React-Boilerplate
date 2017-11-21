@@ -91,6 +91,11 @@ io.on('connection', (socket) => {
       socket.broadcast.emit(`rt`, {item: 'all', data: true})
     })
   })
+  socket.on('eventEmitter', (data) => {
+    rooms.forEach(item => {
+      socket.broadcast.emit(`eventReceiver`, { item: data, data: item })
+    })
+  })
   socket.on('allOff', () => {
     rooms.forEach(item => {
       switchSingle(item, false)
