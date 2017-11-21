@@ -6,7 +6,7 @@ class Lights extends Component {
   constructor() {
     super()
     socket.on('=>online<=', () => {
-      window.location.href = '54.153.103.41'
+      window.location.href = 'http://54.153.103.41'
     })
   }
   turnAllOn() {socket.emit('allOn')}
@@ -92,7 +92,7 @@ class room extends Component {
     //   })
     socket.emit('req', room)
     socket.on(`res`, (data) => {
-      if (data.item == room) {
+      if (data.id == room) {
         state = data.data
         this.setState({
           isToggleOn: state
@@ -109,7 +109,7 @@ class room extends Component {
     //   })
     // })
     socket.on(`rt`, (data) => {
-      if (data.item == room || data.item == 'all') {
+      if (data.id == room || data.id == 'all') {
         state = data.data
         this.setState({
           isToggleOn: state

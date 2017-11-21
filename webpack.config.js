@@ -1,5 +1,6 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
+var fs = require('fs');
 var path = require('path');
 
 module.exports = {
@@ -7,6 +8,7 @@ module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
   entry: "./js/client.js",
   module: {
+    noParse: ['ws'],
     loaders: [
       {
         test: /\.jsx?$/,
@@ -28,6 +30,10 @@ module.exports = {
       {
         test: /\.scss$/,
         loaders: ["style-loader", "css-loader", "sass-loader"]
+      }, 
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
       
     ]
@@ -41,4 +47,5 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
+  externals: ['fs', 'ws']
 };

@@ -42,19 +42,21 @@ var combo = {
     'sAtrium',
     'sLivingRoom 3'],
     num_children = 0
-    rooms.forEach(item => {
-      io.setup(combo[item], io.DIR_OUT, () => {
+  rooms.forEach(item => {
+    combo[item].forEach((items) => {
+      io.setup(items, io.DIR_OUT, () => {
         db.child(`rooms/${item}`)
-        .on('value', (snapshot) => {
-          io.write(combo[item], snapshot.val(), (err) => {
-            if (err) {
-              throw err
-            } else {
-              console.log(`[ ${chalk.blue('i')} ]: ${item} set => ${snapshot.val()}`)
-            }
+          .on('value', (snapshot) => {
+            io.write(items, snapshot.val(), (err) => {
+              if (err) {
+                throw err
+              } else {
+                console.log(`[ ${chalk.blue('i')} ]: ${item} set => ${snapshot.val()}`)
+              }
+            })
           })
-        })
       })
+    })
   })
 function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
@@ -67,7 +69,7 @@ function master_network_if_manager() {
         num_children = 1
         console.log(`[ ${chalk.blue('i')} ]: Spawned Child Process @ PID: ${child_.pid}`)
       } else {
-        console.log(`[ ${chalk.blue('i')} ]: [${chalk.orange(num_children)}] Child(ren) already spawned. Continuing`)
+        console.log(`[ ${chalk.blue('i')} ]: [${chalk.yellow(num_children)}] Child(ren) already spawned. Continuing`)
       }
     } else {
       console.log(`[ ${chalk.green('OK')} ]: connection stable`)

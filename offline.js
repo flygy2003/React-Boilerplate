@@ -1,15 +1,16 @@
 const newWebpackMiddle = require('webpack-express-middleware'),
+  config = require('./webpack.config.js'),
   compiler = require('webpack')(config),
   express = require('express'),
-  colors = require('colors'),
-  config = require('./webpack.config.js'),
   app = express(),
-  io = require('socket.io')(http),
+  server = require('http').Server(app),
+  io = require('socket.io')(server),
+  colors = require('colors'),
   ip = require('ip'),
   sw = require('rpi-gpio'),
   webpack = newWebpackMiddle(compiler, config)
   webpack(app)
-  app.set('port', process.env.PORT || 80)
+  app.set('port', process.env.PORT || 7575)
   
   app.use('*', express.static(__dirname + '/src/static'))
   
@@ -51,17 +52,11 @@ var states = {
   'atrium': true
 }
 function switchSingle(id, state) {
-  if(rooms[id].length == 1) {
-    sw.setup(rooms[id], sw.DIR_OUT, () => {
-      sw.write(rooms[id], state, (err) => {if (err) {throw err}})
+  rooms[id].forEach((value) => {
+    sw.setup(value, sw.DIR_OUT, () => {
+      sw.write(value, value, (err) => {if (err) {throw err}})
     })
-  } if(rooms[id].length >= 1) {
-    rooms[id].forEach(value => {
-      sw.setup(rooms[id], sw.DIR_OUT, () => {
-        sw.write(rooms[id], value, (err) => {if (err) {throw err}})
-      })
-    })
-  }
+  })
 }
 function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
@@ -75,20 +70,20 @@ function master_network_if_manager() {
 io.on('connection', (socket) => {
   setInterval(master_network_if_manager, 500)
   socket.on('req', (data) => {
-    socket.emit(`res`, {item: data, data: states[data]})
+    socket.emit(`res`, {id: data, data: states[data]})
   })
   socket.on('switchOn', (data) => {
     switchSingle(data, true)
-    socket.broadcast.emit(`rt`, {item: data, data: true})
+    socket.broadcast.emit(`rt`, {id: data, data: true})
   })
   socket.on('switchOff', (data) => {
     switchSingle(data, false)
-    socket.broadcast.emit(`rt`, {item: data, data: false})
+    socket.broadcast.emit(`rt`, {id: data, data: false})
   })
   socket.on('allOn', () => {
     rooms.forEach(item => {
       switchSingle(item, true)
-      socket.broadcast.emit(`rt`, {item: 'all', data: true})
+      socket.broadcast.emit(`rt`, {id: 'all', data: true})
     })
   })
   socket.on('eventEmitter', (data) => {
@@ -99,7 +94,7 @@ io.on('connection', (socket) => {
   socket.on('allOff', () => {
     rooms.forEach(item => {
       switchSingle(item, false)
-      socket.broadcast.emit(`rt`, {item: 'all', data: false})
+      socket.broadcast.emit(`rt`, {id: 'all', data: false})
     })
   })
 })
