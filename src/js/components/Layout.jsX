@@ -1,14 +1,11 @@
 import React from "react"
-import Toolbar from "./Toolbar.jsx"
-import Lights from "./Lights.jsx"
-
+import Main from "./Main.jsx"
 export default class Layout extends React.Component {
   render() {
     return (
       <div>
         <body>
-          <Toolbar/>
-          <Lights/>
+          <Main/>
         </body>
       </div>
     );
