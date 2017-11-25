@@ -5,9 +5,7 @@ const socket = io()
 class Lights extends Component {
   constructor() {
     super()
-    socket.on('=>online<=', () => {
-      window.location.href = 'http://54.153.103.41'
-    })
+    socket.on('=>online<=', () => {window.location.href = 'http://54.153.103.41'})
   }
   turnAllOn() {socket.emit('allOn')}
   turnAllOff() {socket.emit('allOff')}
@@ -74,22 +72,12 @@ class room extends Component {
   constructor(props) {
     super(props)
     this.state = { isToggleOn: false }
-    // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
     var room = this.props.lumer
     var state
-    ////////Migrate from fb to diskdb////////
-    // firebase.database()
-    //   .ref()
-    //   .child('/rooms/' + room)
-    //   .once('value')
-    //   .then((snapshot) => {
-    //     state = snapshot.val()
-    //     ////////Migrate from fb to diskdb////////
-    //   })
     socket.emit('req', room)
     socket.on(`res`, (data) => {
       if (data.id == room) {
@@ -99,15 +87,6 @@ class room extends Component {
         })
       }
     })
-    ////////Migrate from fb to diskdb////////
-    // var listener = firebase.database().ref().child('/rooms/' + room)
-    // listener.on('value', (snapshot) => {
-    //   state = snapshot.val()
-    //   ////////Migrate from fb to diskdb////////
-    //   this.setState({
-    //     isToggleOn: state
-    //   })
-    // })
     socket.on(`rt`, (data) => {
       if (data.id == room || data.id == 'all') {
         state = data.data
@@ -116,22 +95,12 @@ class room extends Component {
         })
       }
     })
-    // console.log(this.props.lumer + ': mounted!' )
   }
   handleClick() {
     var room = this.props.lumer
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }))
-    ////////Migrate from fb to diskdb////////
-    // firebase.database().ref().child('/rooms/' + this.props.lumer).set(!this.state.isToggleOn)
-    ////////Migrate from fb to diskdb////////
-    // console.log(this.props.lumer + ': ' + !this.state.isToggleOn)
-    if(this.state.isToggleOn) {
-      socket.emit('switchOn', room)
-    } if(!this.state.isToggleOn) {
-      socket.emit('switchOff', room)
-    }
+    this.setState(prevState => ({isToggleOn: !prevState.isToggleOn}))
+		if(this.state.isToggleOn) {socket.emit('switchOn', room)} 
+		if(!this.state.isToggleOn) {socket.emit('switchOff', room)}
   }
   render() {
     return (
