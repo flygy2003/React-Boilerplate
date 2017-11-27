@@ -69,7 +69,7 @@ class Lights extends Component {
     )
   }
 }
-class room extends Component {
+class Room extends Component {
 
   constructor(props) {
     super(props)
