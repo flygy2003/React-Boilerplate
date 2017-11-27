@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Card from './Card.jsx'
-var io = require('socket.io'),
-    socket = io()
+import io from 'socket.io-client'
+const socket = io()
 class Lights extends Component {
   constructor() {
     super()
