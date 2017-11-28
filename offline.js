@@ -19,10 +19,8 @@ const newWebpackMiddle = require('webpack-express-middleware'),
     res.sendFile(__dirname + '/src/index.html')
     console.log('[' + 'OK'.green + ']' + ' GET request was received and served!')
   })
-  
-  app.listen(app.get('port'), webpack.listen, () => {
-    console.log('[' + 'OK'.green + ']' + ' WebApp listening @ ' + 'localhost'.red + ':' + ip.address().blue + ':' + app.get('port'))
-  })
+	
+server.listen(80, webpack.listen)
 var rooms = {
   'kitchen': [7, 40, 36, 16],
   'livingroom': [31],
