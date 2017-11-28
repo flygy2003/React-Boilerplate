@@ -66,7 +66,7 @@ function master_network_if_manager() {
   })
 }
 io.on('connection', (socket) => {
-  setInterval(master_network_if_manager, 500)
+  // setInterval(master_network_if_manager, 500)
   socket.on('req', (data) => {
     socket.broadcast.emit(`res`, {id: data, data: states[data]})
   })
