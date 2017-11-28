@@ -81,15 +81,6 @@ class Room extends Component {
   componentDidMount() {
     var room = this.props.lumer
     var state
-    ////////Migrate from fb to diskdb////////
-    // firebase.database()
-    //   .ref()
-    //   .child('/rooms/' + room)
-    //   .once('value')
-    //   .then((snapshot) => {
-    //     state = snapshot.val()
-    //     ////////Migrate from fb to diskdb////////
-    //   })
     socket.emit('req', room)
     socket.on(`res`, (data) => {
       if (data.id == room) {
@@ -99,15 +90,6 @@ class Room extends Component {
         })
       }
     })
-    ////////Migrate from fb to diskdb////////
-    // var listener = firebase.database().ref().child('/rooms/' + room)
-    // listener.on('value', (snapshot) => {
-    //   state = snapshot.val()
-    //   ////////Migrate from fb to diskdb////////
-    //   this.setState({
-    //     isToggleOn: state
-    //   })
-    // })
     socket.on(`rt`, (data) => {
       if (data.id == room || data.id == 'all') {
         state = data.data
