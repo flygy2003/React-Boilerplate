@@ -61,14 +61,14 @@ function master_network_if_manager() {
     if (err && err.code == "ENOTFOUND") {
       console.log('ok')
     } else {
-      socket.broadcast.emit('=>online<=')
+      io.emit('=>online<=')
     }
   })
 }
 io.on('connection', (socket) => {
   setInterval(master_network_if_manager, 500)
   socket.on('req', (data) => {
-    socket.emit(`res`, {id: data, data: states[data]})
+    socket.broadcast.emit(`res`, {id: data, data: states[data]})
   })
   socket.on('switchOn', (data) => {
     switchSingle(data, true)
