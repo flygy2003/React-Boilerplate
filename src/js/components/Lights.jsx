@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Card from './Card.jsx'
 import io from 'socket.io-client'
-const socket = io()
+const socket = io('http://10.0.0.58:80')
 class Lights extends Component {
   constructor() {
     super()
