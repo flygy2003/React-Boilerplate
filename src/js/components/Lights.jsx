@@ -1,7 +1,29 @@
 import React, {Component} from 'react'
 import Card from './Card.jsx'
 import io from 'socket.io-client'
-const socket = io('http://10.0.0.58:80')
+const socket = io()
+var db = {
+	0: "Kitchen",
+	1: "Livingroom",
+	2: "Livingroom 2",
+	3: "Livingroom 3",
+	4: "Gallery",
+	5: "Gallery 2",
+	6: "Gallery 3",
+	7: "Office",
+	8: "Neekon's Bedroom",
+	9: "Homework Room",
+	10: "Dining Room",
+	11: "Atrium",
+	12: "Library",
+	13: "Master Bedroom",
+	14: "Master Bathroom",
+	15: "Family Room",
+	16: "Guest Bathroom",
+	17: "Outdoor Wall",
+	18: "Outdoor Strip",
+	19: "Outdoor Trees & Fence"
+}
 class Lights extends Component {
   constructor() {
     super()
@@ -12,36 +34,6 @@ class Lights extends Component {
   turnAllOn() {socket.emit('allOn')}
   turnAllOff() {socket.emit('allOff')}
   render() {
-    var dbnames = 
-    [
-      'kitchen',
-      'livingroom',
-      'livingroom2',
-      'livingroom3',
-      'gallery',
-      'gallery2',
-      'gallery3',
-      'office',
-      'neekonsbedroom',
-      'homeworkroom',
-      'diningroom',
-      'atrium'
-    ].sort()
-    var roomies = 
-      [
-        'Atrium',
-        'kitchen',
-        'Living Room',
-        'Living Room 2',
-        'Living Room 3',
-        'Office',
-        'Neekon\'s Bedroom',
-        'Homework Room',
-        'Dining Room',
-        'Gallery',
-        'Gallery 2',
-        'Gallery 3'
-      ].sort()
     return(
       <Card>
         <ul className='flex-container'>
@@ -56,13 +48,16 @@ class Lights extends Component {
             </div>
           </div>
           {
-            roomies.forEach((item, i) => {
+            db.forEach((item, i) => {
               return (
-                <div className={item == roomies.slice(-1)[0] ? 'link-wrapper else' : 'link-wrapper all'}>
-                  <Room lumer={dbnames[i]} key={i}>{item}</Room>
+                <div className={item == Object.keys(db).length ? 'link-wrapper else' : 'link-wrapper all'}>
+                  <Room lumer={db[i]} key={i}>{item}</Room>
                 </div>
               )
-            })
+						})
+						for (i = 0; i < Object.keys(db).length; i++) {
+						console.log(db[i])
+						}
           }
         </ul>
       </Card>
