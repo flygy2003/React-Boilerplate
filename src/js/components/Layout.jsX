@@ -24,8 +24,12 @@ export default class Layout extends React.Component {
           <Switch>
             <Route
               exact
-              path='/lights'
+              path='/'
               component={() => <Lights/>} />
+            <Route
+              exact
+              path='/lights'
+              component={() => <Lights />} />
             <Route
               exact
               path='/heater'
