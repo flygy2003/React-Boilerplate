@@ -10,4 +10,16 @@ class Card extends Component {
   }
 }
 
+export class Room extends Component {
+  constructor(props) {super(props)}
+  render() {
+    const { children } = this.props
+    return (
+      <li className="link-wrapper all">
+        {children}
+      </li>
+    )
+  }
+}
+
 export default Card

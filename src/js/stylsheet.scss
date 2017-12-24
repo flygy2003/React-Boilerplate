@@ -2,6 +2,7 @@ $milk: #e0d0d0;
 $background_dark: #1e1d1d;
 $black: #000000;
 $steel: #202838;
+$coolFont: "Fjalla One", sans-serif;
 
 body {
   margin: 0;
@@ -81,13 +82,14 @@ body {
         width: 30%;
 
         .menuItem {
+          font-family: $coolFont;
           display: block;
           padding: 20px;
           margin-top:10px;
           font-size: 28px;
           background: #000000;
           color: #ffffff;
-
+          text-decoration: none;
 
           &:not(:first-child) {
             border-top: 1px solid #ffffff;
@@ -168,7 +170,7 @@ body {
           display: block;
           width: 350px;
           height: auto;
-          font-family: 'Fjalla One', sans-serif;
+          font-family: $coolFont;
           font-size: 275%;
           &.on {
             animation-delay: 0ms;
@@ -214,7 +216,7 @@ body {
     width: 350px;
     height: 55px;
     margin: 20px;
-    font-family: 'Fjalla One', sans-serif;
+    font-family: $coolFont;
     .on {
       cursor: pointer;
       margin-top: 7.5px;

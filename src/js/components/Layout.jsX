@@ -2,6 +2,8 @@ import React from "react"
 import classnames from "classnames"
 import Toolbar from "./Toolbar.jsx"
 import Lights from "./Lights.jsx"
+import Settings from "./Settings.jsx"
+import Heater from "./Heater.jsx"
 import Card from "./Card.jsx"
 import { Route, Switch } from 'react-router-dom'
 
@@ -23,15 +25,15 @@ export default class Layout extends React.Component {
             <Route
               exact
               path='/lights'
-              component={() => <Lights />} />
+              component={() => <Lights/>} />
             <Route
               exact
               path='/heater'
-              component={() => <Card><p>heater</p></Card>} />
+              component={() => <Heater/>} />
             <Route
               exact
               path='/settings'
-              component={() => <Lights/>} />
+              component={() => <Settings/>} />
           </Switch>
         </div>
       </div>
