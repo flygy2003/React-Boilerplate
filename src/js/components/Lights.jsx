@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import * as firebase from 'firebase'
+import classnames from 'classnames'
 import Card from './Card.jsx'
 
 var config = {
@@ -67,48 +68,50 @@ class Lights extends Component {
   }
   render() {
     return(
-      <Card>
-        <ul className="flex-container">
-        <div className='link-wrapper all'>
-          <div className='allLights'>
-            <div className='on' onClick={this.turnAllOn.bind(this)}>
-              All
-            </div>
-            <div className='off' onClick={this.turnAllOff.bind(this)}>
-              None
+      <div>
+        <Card>
+          <ul className="flex-container">
+          <div className='link-wrapper all'>
+            <div className='allLights'>
+              <div className='on' onClick={this.turnAllOn.bind(this)}>
+                All
+              </div>
+              <div className='off' onClick={this.turnAllOff.bind(this)}>
+                None
+              </div>
             </div>
           </div>
-        </div>
-          {[
-             'Atrium',
-             'kitchen',
-             'Living Room',
-             'Living Room 2',
-             'Living Room 3',
-             'Office',
-             'Office Bathroom',
-             'Neekon\'s Bedroom',
-             'Homework Room',
-             'Ryan\'s Bathroom',
-             'Ryan\'s Bedroom',
-             'Dining Room',
-             'Gallery',
-             'Gallery 2',
-             'Gallery 3',
-             'Guest Bathroom',
-             'Library',
-             'Master Bedroom',
-             'Master Bathrooms'
-          ].sort().map((item, i) => {
-            return(
-              <div className={i == 18 ? "link-wrapper else" : "link-wrapper all"}>
-                <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
-              </div>
-            )
-          })
-        }
-        </ul>
-      </Card>
+            {[
+              'Atrium',
+              'kitchen',
+              'Living Room',
+              'Living Room 2',
+              'Living Room 3',
+              'Office',
+              'Office Bathroom',
+              'Neekon\'s Bedroom',
+              'Homework Room',
+              'Ryan\'s Bathroom',
+              'Ryan\'s Bedroom',
+              'Dining Room',
+              'Gallery',
+              'Gallery 2',
+              'Gallery 3',
+              'Guest Bathroom',
+              'Library',
+              'Master Bedroom',
+              'Master Bathrooms'
+            ].sort().map((item, i) => {
+              return(
+                <div className={i == 18 ? "link-wrapper else" : "link-wrapper all"}>
+                  <Room lumer={(item != "All") ? "s" + item.replace(" ", "") : "all"} key={i}>{item}</Room>
+                </div>
+              )
+            })
+          }
+          </ul>
+        </Card>
+      </div>
     )
   }
 }

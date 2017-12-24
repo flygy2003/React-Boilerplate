@@ -1,33 +1,86 @@
 import React, { Component } from 'react'
+import classnames from 'classnames'
+import {Link} from "react-router-dom"
 
 class Toolbar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      menuOpen: false
+    }
+  }
+
+  renderMenu() {
+    return (
+      <div className='menuContainer'>{[
+        <Link to="/lights" className='menuItem'>Lights</Link>,
+        <Link to="/settings" className='menuItem'>Settings</Link>,
+        <Link to="/heater" className='menuItem'>Heater</Link>
+      ].map((item, index) => (
+        <MenuItem key={index} animationDelay={100 * index}>{ item }</MenuItem>
+      ))}
+      </div>
+    )
+  }
+
+  setMenuOpen(menuOpen) {
+    const { onMenuToggle } = this.props
+    if (onMenuToggle) {
+      onMenuToggle(menuOpen)
+    }
+    this.setState({ menuOpen })
+  }
+
   render() {
+    const { menuOpen } = this.state
     return(
       <div className="toolbar">
         <Logo/>
-        <DownArrow/>
+        <DownArrow isDown={!menuOpen} onToggle={isDown => this.setMenuOpen(!isDown)} />
+        <div className={classnames('dropdownMenu', { menuOpen })}>
+          <div className='menuShade' onClick={() => this.setMenuOpen(false)}></div>
+          { menuOpen ? this.renderMenu() : null }
+        </div>
         <div id="footer"/>
       </div>
     )
   }
 }
 
-class DownArrow extends Component {
-  constructor() {
-    super()
+class MenuItem extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
-      isDown: true
+      isAnimated: false
     }
+
+    const { animationDelay } = this.props
+    setTimeout(() => {
+      if (this.deleted) {
+        return
+      }
+      this.setState({ isAnimated: true})
+    }, animationDelay)
   }
-  spin() {
-    this.setState({
-      isDown: !this.state.isDown
-    })
-    console.log(this.state.isDown)
+
+  componentWillUnmount() {
+    this.deleted = true
   }
+
   render() {
+    const { children, animationDelay } = this.props
+    const { isAnimated } = this.state
     return (
-      <img src="../static/downArrow.png" className={this.state.isDown ? "arrow down" : "arrow up"} onClick={this.spin.bind(this)}/>
+      <div className={classnames('menuItemContainer', { isAnimated })}>{children}</div>
+    )
+  }
+}
+
+class DownArrow extends Component {
+  render() {
+    const { onToggle, isDown } = this.props
+    return (
+      <img src="../static/downArrow.png" className={isDown ? "arrow down" : "arrow up"} onClick={() => onToggle(!isDown) }/>
     )
   }
 }

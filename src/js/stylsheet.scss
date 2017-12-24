@@ -8,7 +8,14 @@ body {
   padding: 0;
   min-width: 300px;
   background: $background_dark;
+
+  .blurContent {
+    filter: blur(5px);
+  }
+
   .toolbar {
+    position: relative;
+
     .arrow {
       height: 30px;
       padding: 20px;
@@ -28,6 +35,71 @@ body {
         transition-timing-function: ease-in-out;
       }
     }
+
+    .dropdownMenu {      
+      &.menuOpen {
+        .menuShade {
+          display: block;
+        }
+
+        .menuContainer {
+          display: block;
+          
+          @media only screen and (max-width: 800px) {
+            width: auto;
+            right: 10px;
+          }
+        }
+      }
+
+      .menuShade {
+        display: none;
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: transparentize($color: #000000, $amount: 0.5)
+      }
+
+      .menuItemContainer {
+        opacity: 0;
+        transition: opacity ease-in 0.4s;
+
+        &.isAnimated {
+          opacity: 1;
+        }
+      }
+
+      .menuContainer {
+        z-index: 2;
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 10px;
+        width: 30%;
+
+        .menuItem {
+          display: block;
+          padding: 20px;
+          margin-top:10px;
+          font-size: 28px;
+          background: #000000;
+          color: #ffffff;
+
+
+          &:not(:first-child) {
+            border-top: 1px solid #ffffff;
+          }
+
+          &:hover {
+            background: red;
+          }
+        }
+      }
+    }
+
     #logo {
       display: inline-block;
       padding: 16px;
@@ -35,8 +107,7 @@ body {
     }
     #footer {
       display: block;
-      width: 98%;
-      margin: auto;
+      margin: 0 10px;
       height: 3px;
       border-radius: 1.5px;
       background: $milk;
