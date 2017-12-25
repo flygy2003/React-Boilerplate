@@ -29,7 +29,7 @@ export default class Layout extends React.Component {
             <Route
               exact
               path='/lights'
-              component={() => <Lights />} />
+              component={() => <Lights/>} />
             <Route
               exact
               path='/heater'

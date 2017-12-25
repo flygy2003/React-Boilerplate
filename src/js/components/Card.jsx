@@ -15,7 +15,7 @@ export class Room extends Component {
   render() {
     const { children } = this.props
     return (
-      <li className="link-wrapper all">
+      <li className="room">
         {children}
       </li>
     )

@@ -13,108 +13,6 @@ body {
   .blurContent {
     filter: blur(5px);
   }
-
-  .toolbar {
-    position: relative;
-
-    .arrow {
-      height: 30px;
-      padding: 20px;
-      display: inline-block;
-      &.down {
-        display: inline-block;
-        transform: rotate(0deg);
-        transform-origin: 50 50;
-        transition-duration: 0.25s;
-        transition-timing-function: ease-in-out;
-      }
-      &.up {
-        display: inline-block;
-        transform: rotate(180deg);
-        transform-origin: 50 50;
-        transition-duration: 0.25s;
-        transition-timing-function: ease-in-out;
-      }
-    }
-
-    .dropdownMenu {      
-      &.menuOpen {
-        .menuShade {
-          display: block;
-        }
-
-        .menuContainer {
-          display: block;
-          
-          @media only screen and (max-width: 800px) {
-            width: auto;
-            right: 10px;
-          }
-        }
-      }
-
-      .menuShade {
-        display: none;
-        z-index: 1;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: transparentize($color: #000000, $amount: 0.5)
-      }
-
-      .menuItemContainer {
-        opacity: 0;
-        transition: opacity ease-in 0.4s;
-
-        &.isAnimated {
-          opacity: 1;
-        }
-      }
-
-      .menuContainer {
-        z-index: 2;
-        display: none;
-        position: absolute;
-        top: calc(100% + 10px);
-        left: 10px;
-        width: 30%;
-
-        .menuItem {
-          font-family: $coolFont;
-          display: block;
-          padding: 20px;
-          margin-top:10px;
-          font-size: 28px;
-          background: #000000;
-          color: #ffffff;
-          text-decoration: none;
-
-          &:not(:first-child) {
-            border-top: 1px solid #ffffff;
-          }
-
-          &:hover {
-            background: red;
-          }
-        }
-      }
-    }
-
-    #logo {
-      display: inline-block;
-      padding: 16px;
-      height: 80px;
-    }
-    #footer {
-      display: block;
-      margin: 0 10px;
-      height: 3px;
-      border-radius: 1.5px;
-      background: $milk;
-    }
-  }
   .cardContainer {
     padding: 16px;
     display: flex;
@@ -217,6 +115,7 @@ body {
     height: 55px;
     margin: 20px;
     font-family: $coolFont;
+    user-select: none;
     .on {
       cursor: pointer;
       margin-top: 7.5px;
@@ -237,7 +136,7 @@ body {
       color: $steel;
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .cardContainer {
       min-width: 0;
       width: 240px;
@@ -272,6 +171,7 @@ body {
           border-left-width: 0px;
           }
           .room {
+            user-select: none;
             margin: auto;
             padding: none;
             text-align: center;
@@ -286,41 +186,10 @@ body {
         }
       }
     }
-    .arrow {
-      margin-left: 35px;
-    }
-    #footer {
-      width: 95%;
-      margin: auto;
-    }
-    #downArrow {
-      position: fixed;
-      right: 40%;
-      left: 40%;
-      top: 30px;
-    }
     .allLights {
       max-width: 220px;
       margin: auto;
       border-style: none;
-    }
-  }
-  @media only screen and (max-width: 400px) {
-    #logo {
-      height: 40px;
-    }
-    .arrow {
-      margin-left: 0px;
-    }
-    #footer {
-      margin: auto;
-      width: 92.5%;
-    }
-  }
-  @media only screen and (max-height: 800px) {
-    #logo {
-      padding: 16px;
-      height: 40px;
     }
   }
 }

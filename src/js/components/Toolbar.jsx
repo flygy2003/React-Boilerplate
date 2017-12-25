@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 import {Link} from "react-router-dom"
+import "./toolbar.scss"
 
 class Toolbar extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Toolbar extends Component {
         <Link to="/settings" className='menuItem'>Settings</Link>,
         <Link to="/heater" className='menuItem'>Heater</Link>
       ].map((item, index) => (
-        <MenuItem key={index} animationDelay={100 * index}>{ item }</MenuItem>
+        <MenuItem key={index} animationDelay={80 * index}>{ item }</MenuItem>
       ))}
       </div>
     )

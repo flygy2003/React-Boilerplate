@@ -1,0 +1,135 @@
+$milk: #e0d0d0;
+$background_dark: #1e1d1d;
+$black: #000000;
+$steel: #202838;
+$coolFont: "Fjalla One", sans-serif;
+
+.toolbar {
+  position: relative;
+  .arrow {
+    position: relative;
+    width: 46px;
+    padding: 20px;
+    &.down {
+      transform: rotate(0deg);
+      transform-origin: 50 50;
+      transition-duration: 0.25s;
+      transition-timing-function: ease-in-out;
+    }
+    &.up {
+      transform: rotate(180deg);
+      transform-origin: 50 50;
+      transition-duration: 0.25s;
+      transition-timing-function: ease-in-out;
+    }
+  }
+
+  .dropdownMenu {      
+    &.menuOpen {
+      .menuShade {
+        display: block;
+      }
+
+      .menuContainer {
+        display: block;
+        
+        @media only screen and (max-width: 800px) {
+          width: auto;
+          right: 10px;
+        }
+      }
+    }
+
+    .menuShade {
+      display: none;
+      z-index: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: transparentize($color: #000000, $amount: 0.5)
+    }
+
+    .menuItemContainer {
+      opacity: 0;
+      &.isAnimated {
+        transform-origin: top center;
+        animation-timing-function: ease-in-out;
+        animation-delay: 0ms;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+        animation-name: menuIn;
+        @keyframes menuIn {
+          0% {
+            opacity: 0;
+            transform: rotateX(-90deg) translateY(-20px);
+          }
+          100% {
+            opacity: 1;
+            transform: rotateX(0deg) translateY(0px);
+          }
+        }
+      }
+    }
+
+    .menuContainer {
+      z-index: 2;
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 10px;
+      width: 30%;
+
+      .menuItem {
+        font-family: $coolFont;
+        display: block;
+        padding: 20px;
+        margin-top:10px;
+        font-size: 28px;
+        background: #000000;
+        color: #ffffff;
+        text-decoration: none;
+
+        &:not(:first-child) {
+          border-top: 1px solid #ffffff;
+        }
+
+        &:hover {
+          background: red;
+        }
+      }
+    }
+  }
+
+  #logo {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 16px;
+    width: 90px;
+  }
+  #footer {
+    display: block;
+    margin: 0 10px;
+    height: 3px;
+    border-radius: 1.5px;
+    background: $milk;
+  }
+}
+@media screen and (max-width: 800px) {
+    .arrow {
+      left: calc(50% - 165px);
+      transform: translate(-50%, -50%);
+    }
+    #footer {
+      width: 95%;
+      margin: auto;
+    }
+    #downArrow {
+      position: fixed;
+      right: 40%;
+      left: 40%;
+      top: 30px;
+    }
+}
