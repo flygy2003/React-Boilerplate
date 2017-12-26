@@ -6,7 +6,7 @@ class Heater extends Component {
     return(
       <div>
         <Card>
-          <Room>Heater Page Soon To Come...</Room>
+        Heater Page Soon To Come...
         </Card>
       </div>
     )

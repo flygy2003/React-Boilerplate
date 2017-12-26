@@ -13,23 +13,35 @@ var config = {
 }
 
 firebase.initializeApp(config)
-var database = firebase.database().ref()
+var database = firebase.database()
 var range = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 
               9, 10, 11, 12, 13, 14, 15, 
               16, 17, 18, 19, 20, 21, 22, 
               23, 24, 25, 26, 27, 28, 29, 30 ]
+var names = []
+var states = []
+range.forEach(item => {
+  database.ref(`VirtualDB/${item}`)
+  .once('value')
+  .then(snapshot => {
+    names.push(snapshot.val().name)
+    states.push(snapshot.val().state)
+  })
+})
+console.log(names)
+console.log(states)
 class Lights extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
   turnAllOn() {
     range.forEach(item => {
-      database.child("VirtualDB/" + item + "/state").set(true)
+      database.ref("VirtualDB/" + item + "/state").set(true)
     })
   }
   turnAllOff() {
     range.forEach(item => {
-      database.child("VirtualDB/" + item + "/state").set(false)
+      database.ref("VirtualDB/" + item + "/state").set(false)
     })
   }
   render() {
@@ -48,7 +60,7 @@ class Lights extends Component {
             </div>
           </div>
              {range.forEach(item => {
-                <Room lumer={item} key={item}/>
+                return(<Room lumer={item} key={item}>{names[item]}</Room>)
              })
           }
           </ul>
@@ -63,22 +75,14 @@ class Room extends Component {
   constructor(props) {
     super(props)
     this.state = { toggle: false,
-                   name: "" }
+                   name: "h" }
+    console.log(this.props.lumer)
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
-    var {lumer} = this.props
-    console.log(lumer)
-    database.ref(`VirtualDB/${lumer}`)
-            .once('value')
-            .then(snapshot => {
-      this.setState({
-        toggle: snapshot.val().state,
-        name: snapshot.val().name
-      })
-    })
+    const {lumer} = this.props
     var listener = database.ref(`VirtualDB/${lumer}`)
     listener.on("value", (snapshot) => {
       this.setState({
@@ -91,11 +95,11 @@ class Room extends Component {
     database.child(`VirtualDB/${this.props.lumer}/state`).set(!this.state.toggle)
   }
   render() {
-    var { toggle, name } = this.state
+    const { toggle, name } = this.state
     return (
         <div className='link-wrapper'>
           <li onClick={this.handleClick} className={toggle ? "room on" : "room off"}>
-            {name}
+            {this.props.children}
           </li>
         </div>
     )

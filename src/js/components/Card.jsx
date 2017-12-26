@@ -10,7 +10,7 @@ class Card extends Component {
   }
 }
 
-export class Room extends Component {
+class Room extends Component {
   constructor(props) {super(props)}
   render() {
     const { children } = this.props

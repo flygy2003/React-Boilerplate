@@ -6,7 +6,7 @@ class Settings extends Component {
     return(
       <div>
         <Card>
-          <Room>Settings Pane</Room>
+        Settings Pane
         </Card>
       </div>
     )
