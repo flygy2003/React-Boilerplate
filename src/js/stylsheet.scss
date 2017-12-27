@@ -9,26 +9,42 @@ body {
   padding: 0;
   min-width: 300px;
   background: $background_dark;
-
+  .transition {
+    transition: 0.4s transform cubic-bezier(0.075, 0.52, 0.165, 1);
+  }
   .blurContent {
     filter: blur(5px);
+    transform: perspective(10000px) rotateX(10deg);
   }
   .cardContainer {
+    animation-direction: forward;
+    animation-delay: none;
+    animation-duration: 1s;
+    animation-name: init;
+    animation-timing-function: cubic-bezier(0.075, 0.52, 0.165, 1);
     padding: 16px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin: auto;
     margin-top: 10%;
-    margin-bottom: 80px;
-    width: 62%;
-    height: 62%;
+    margin-bottom: 80px; 
+    max-width: 70%;
     min-width: 530px;
     border-radius: 30px;
     border-color: $milk;
     border-width: 10px;
     border-style: solid;
     background-color: $background_dark;
+    @keyframes init {
+      0% {
+        transform: perspective(10000px) rotateX(10deg) translateY(300px)
+      } 50% {
+        transform: perspective(10000px) translateY(0px)
+      } 100% {
+        transform: perspective(10000px) rotateX(0deg)
+      }
+    }
     .flex-container {
       margin: auto;
       list-style: none;

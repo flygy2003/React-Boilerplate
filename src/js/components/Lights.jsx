@@ -18,18 +18,7 @@ var range = [ 0, 1, 2, 3, 4, 5, 6, 7, 8,
               9, 10, 11, 12, 13, 14, 15, 
               16, 17, 18, 19, 20, 21, 22, 
               23, 24, 25, 26, 27, 28, 29, 30 ]
-var names = []
-var states = []
-range.forEach(item => {
-  database.ref(`VirtualDB/${item}`)
-  .once('value')
-  .then(snapshot => {
-    names.push(snapshot.val().name)
-    states.push(snapshot.val().state)
-  })
-})
-console.log(names)
-console.log(states)
+
 class Lights extends Component {
   constructor(props) {
     super(props)
@@ -59,8 +48,8 @@ class Lights extends Component {
               </div>
             </div>
           </div>
-             {range.forEach(item => {
-                return(<Room lumer={item} key={item}>{names[item]}</Room>)
+             {range.map(item => {
+                return(<Room lumer={item} key={item} />)
              })
           }
           </ul>
@@ -75,7 +64,7 @@ class Room extends Component {
   constructor(props) {
     super(props)
     this.state = { toggle: false,
-                   name: "h" }
+                   name: "Loading..." }
     console.log(this.props.lumer)
     // This binding is necessary to make `this` work in the callback
     this.handleClick = this.handleClick.bind(this)
@@ -92,14 +81,14 @@ class Room extends Component {
     })
   }
   handleClick() {
-    database.child(`VirtualDB/${this.props.lumer}/state`).set(!this.state.toggle)
+    database.ref(`VirtualDB/${this.props.lumer}/state`).set(!this.state.toggle)
   }
   render() {
     const { toggle, name } = this.state
     return (
         <div className='link-wrapper'>
           <li onClick={this.handleClick} className={toggle ? "room on" : "room off"}>
-            {this.props.children}
+            {name}
           </li>
         </div>
     )
