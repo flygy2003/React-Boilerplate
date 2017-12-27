@@ -65,32 +65,32 @@
 // //   }
 // // })
 // console.log("person's possesive")
-var db = {
-	0: "Kitchen",
-	1: "Livingroom",
-	2: "Livingroom 2",
-	3: "Livingroom 3",
-	4: "Gallery",
-	5: "Gallery 2",
-	6: "Gallery 3",
-	7: "Office",
-	8: "Neekon's Bedroom",
-	9: "Homework Room",
-	10: "Dining Room",
-	11: "Atrium",
-	12: "Library",
-	13: "Master Bedroom",
-	14: "Master Bathroom",
-	15: "Family Room",
-	16: "Guest Bathroom",
-	17: "Outdoor Wall",
-	18: "Outdoor Strip",
-	19: "Outdoor Trees & Fence"
-}
-// db.foreach((item, i) => {
-// 	console.log('(${item}, ${i})')
-// })
-// console.log(`the last key digit is: ${Object.keys(db).length -1}`)
-for (i = 0; i < Object.keys(db).length; i++) {
-	console.log(db[i])
-}
+// var db = {
+// 	0: "Kitchen",
+// 	1: "Livingroom",
+// 	2: "Livingroom 2",
+// 	3: "Livingroom 3",
+// 	4: "Gallery",
+// 	5: "Gallery 2",
+// 	6: "Gallery 3",
+// 	7: "Office",
+// 	8: "Neekon's Bedroom",
+// 	9: "Homework Room",
+// 	10: "Dining Room",
+// 	11: "Atrium",
+// 	12: "Library",
+// 	13: "Master Bedroom",
+// 	14: "Master Bathroom",
+// 	15: "Family Room",
+// 	16: "Guest Bathroom",
+// 	17: "Outdoor Wall",
+// 	18: "Outdoor Strip",
+// 	19: "Outdoor Trees & Fence"
+// }
+// // db.foreach((item, i) => {
+// // 	console.log('(${item}, ${i})')
+// // })
+// // console.log(`the last key digit is: ${Object.keys(db).length -1}`)
+// for (i = 0; i < Object.keys(db).length; i++) {
+// 	console.log(db[i])
+// }
