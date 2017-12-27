@@ -94,3 +94,24 @@
 // for (i = 0; i < Object.keys(db).length; i++) {
 // 	console.log(db[i])
 // }
+let fb = require('firebase'),
+  config = {
+    apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
+    authDomain: "home-b7104.firebaseapp.com",
+    databaseURL: "https://home-b7104.firebaseio.com",
+    projectId: "home-b7104",
+    storageBucket: "home-b7104.appspot.com",
+    messagingSenderId: "42864256502"
+  }
+fb.initializeApp(config)
+let db = fb.database()
+let relays =
+  [0, 1,
+    3, 4,
+    11, 20,
+    23, 29]
+relays.forEach(item => {
+  db.ref(`VirtualDB/${item}/pin`).on('value', (snapshot) => {
+    console.log(snapshot.val())
+  })
+})

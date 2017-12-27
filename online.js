@@ -11,53 +11,33 @@ const io = require('rpi-gpio'),
   messagingSenderId: "42864256502"
 }
 fb.initializeApp(config)
-var db = fb.database().ref()
+var db = fb.database()
 // var pins = 
 //   /*closest to pi*/ [7, 35, 33, 31, 29, 15, 13, 11, 
 //   40, 38, 36, 32, 22, 18, 16, 12]/* furthest from pi */
-var combo = {
-  'skitchen': [7, 40, 36, 16],
-  'sLivingRoom': [31],
-  'sOffice': [22, 32],
-  'sNeekon\'sBedroom': [18],
-  'sHomeworkRoom': [33],
-  'sDiningRoom': [13],
-  'sGallery': [35],
-  'sGallery2': [29],
-  'sGallery3': [12],
-  'sLivingRoom 2': [15],
-  'sAtrium': [11],
-  'sLivingRoom 3': [38]},
-  rooms = [
-    'skitchen',
-    'sLivingRoom',
-    'sOffice',
-    'sNeekon\'sBedroom',
-    'sHomeworkRoom',
-    'sDiningRoom',
-    'sGallery',
-    'sGallery2',
-    'sGallery3',
-    'sLivingRoom 2',
-    'sAtrium',
-    'sLivingRoom 3'],
-    num_children = 0
-  rooms.forEach(item => {
-    combo[item].forEach((items) => {
-      io.setup(items, io.DIR_OUT, () => {
-        db.child(`rooms/${item}`)
+let relays = 
+ [0, 1, 
+  3, 4, 
+  11, 20, 
+  23, 29]
+relays.forEach(relay => {
+  db.ref(`VirtualDB/${relay}/pin`).on('value', (snapshot) => {
+    snapshot.val().forEach(pin => {
+      io.setup(pin, io.DIR_OUT, () => {
+        db.ref(`VirtualDB/${relay}`)
           .on('value', (snapshot) => {
-            io.write(items, snapshot.val(), (err) => {
+            io.write(pin, snapshot.val().state, (err) => {
               if (err) {
                 throw err
               } else {
-                console.log(`[ ${chalk.blue('i')} ]: ${item} set => ${snapshot.val()}`)
+                console.log(`[ ${chalk.blue('i')} ]: ${snapshot.val().name} set => ${snapshot.val().state}`)
               }
             })
           })
       })
     })
   })
+})
 function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
     if (err && err.code == "ENOTFOUND") {
