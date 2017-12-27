@@ -35,7 +35,8 @@ class Lights extends Component {
   }
   render() {
     return(
-      <div>
+      <div className='wrapper'>
+        <div className='title'>Lights</div>
         <Card>
           <ul className="flex-container">
           <div className='link-wrapper all'>
@@ -49,9 +50,8 @@ class Lights extends Component {
             </div>
           </div>
              {range.map(item => {
-                return(<Room lumer={item} key={item} />)
-             })
-          }
+                return(<Room lumer={item} key={item}/>)
+             })}
           </ul>
         </Card>
       </div>
@@ -71,7 +71,7 @@ class Room extends Component {
   }
 
   componentDidMount() {
-    const {lumer} = this.props
+    const { lumer } = this.props
     var listener = database.ref(`VirtualDB/${lumer}`)
     listener.on("value", (snapshot) => {
       this.setState({
