@@ -20,7 +20,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Toolbar onMenuToggle={isMenuOpen => this.setState({ blurContent: isMenuOpen })} />
-        <div className={classnames({ blurContent })}>
+        <div className={classnames({ blurContent }) + " transition"}>
           <Switch>
             <Route
               exact
