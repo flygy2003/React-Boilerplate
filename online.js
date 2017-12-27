@@ -15,12 +15,7 @@ var db = fb.database()
 // var pins = 
 //   /*closest to pi*/ [7, 35, 33, 31, 29, 15, 13, 11, 
 //   40, 38, 36, 32, 22, 18, 16, 12]/* furthest from pi */
-let relays = 
- [0, 1, 
-  3, 4, 
-  11, 20, 
-  23, 29]
-relays.forEach(relay => {
+for (let relay = 0; relay <= 30; relay++) {
   db.ref(`VirtualDB/${relay}/pin`).on('value', (snapshot) => {
     snapshot.val().forEach(pin => {
       io.setup(pin, io.DIR_OUT, () => {
@@ -37,7 +32,7 @@ relays.forEach(relay => {
       })
     })
   })
-})
+}
 let num_children = 0
 function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
