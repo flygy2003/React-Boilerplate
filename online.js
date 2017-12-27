@@ -38,6 +38,7 @@ relays.forEach(relay => {
     })
   })
 })
+let num_children = 0
 function master_network_if_manager() {
   require('dns').lookup('google.com', function (err) {
     if (err && err.code == "ENOTFOUND") {
