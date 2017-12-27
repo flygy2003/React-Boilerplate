@@ -3,6 +3,7 @@ var config = require('./webpack.config.js')
 var compiler = require('webpack')(config)
 var express = require('express')
 var colors = require('colors')
+var gad = require('git-auto-deploy')
 // var path = require('path')
 // var fb = require('firebase')
 var ip = require('ip')
@@ -61,6 +62,28 @@ app.get('*', (req, res) => {
 app.listen(app.get('port'), webpack.listen, () => {
   console.log('[' + 'OK'.green + ']' + ' WebApp listening @ ' + 'localhost'.red + ':' + ip.address().blue + ':' + app.get('port'))
 })
+
+var mailOptions = {
+  from: ['"Saadat Home Iot Server (EC2)" <neekonsu@gmail.com>'],
+  to: ['"Neekon Saadat" <neekonsu@gmail.com>']
+};
+
+var mailConfig = {
+  service: "Gmail",
+  auth: {
+    user: "neekonsu@gmail.com",
+    pass: "emon2003"
+  }
+};
+
+var repo = {
+  origin: "http://www.github.com/flygy2003/React-Boilerplate",
+  branch: "master"
+};
+setInterval(() => {
+  var mail = gad.createMail(mailConfig, mailOptions)
+  gad.deploy(repo, mail)
+}, 300000)
 
 // var rule = new schedule.RecurrenceRule();
 //     rule.hour = 22;
