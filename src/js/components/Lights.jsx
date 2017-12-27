@@ -84,9 +84,10 @@ class Room extends Component {
     database.ref(`VirtualDB/${this.props.lumer}/state`).set(!this.state.toggle)
   }
   render() {
-    const { toggle, name } = this.state
+		const { toggle, name } = this.state
+		const { lumer } = this.props
     return (
-        <div className='link-wrapper'>
+        <div className={lumer == range[range.length - 1] ? "link-wrapper else" : 'link-wrapper all'}>
           <li onClick={this.handleClick} className={toggle ? "room on" : "room off"}>
             {name}
           </li>

@@ -9,12 +9,13 @@ body {
   padding: 0;
   min-width: 300px;
   background: $background_dark;
+	overflow-x: hidden;
   .transition {
     transition: 0.4s transform cubic-bezier(0.075, 0.52, 0.165, 1);
   }
   .blurContent {
-    filter: blur(5px);
-    transform: perspective(10000px) rotateX(10deg);
+		filter: blur(5px);
+    transform: perspective(1000px) rotateX(10deg);
   }
   .cardContainer {
     animation-direction: forward;
@@ -172,7 +173,8 @@ body {
           max-width: 250px;
           border-style: solid;
           border-color: $milk;
-          border-top-width: 0px;
+					border-top-width: 0px;
+					border-radius: 0.5px;
           border-bottom-width: 2.5px;
           border-right-width: 0px;
           border-left-width: 0px;
@@ -180,7 +182,6 @@ body {
           &.else {
           max-width: 250px;
           border-style: none;
-          border-color: #1e1d1d;
           border-top-width: 0px;
           border-bottom-width: 0px;
           border-right-width: 0px;
@@ -193,7 +194,6 @@ body {
             text-align: center;
             max-width: 250px;
             border-style: none;
-            border-color: #1e1d1d;
             border-top-width: 0px;
             border-bottom-width: 0px;
             border-right-width: 0px;
