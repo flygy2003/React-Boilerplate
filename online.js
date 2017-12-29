@@ -22,7 +22,7 @@ for (let relay = 0; relay <= 30; relay++) {
 				io.setup(pin, io.DIR_OUT, () => {
 					db.ref(`VirtualDB/${relay}`)
 						.on('value', (snapshot) => {
-							io.write(pin, snapshot.val().state, (err) => {
+							io.write(pin, !snapshot.val().state, (err) => {
 								if (err) {
 									throw err
 								} else {
