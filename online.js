@@ -16,21 +16,27 @@ var db = fb.database()
 //   /*closest to pi*/ [7, 35, 33, 31, 29, 15, 13, 11, 
 //   40, 38, 36, 32, 22, 18, 16, 12]/* furthest from pi */
 for (let relay = 0; relay <= 30; relay++) {
-  db.ref(`VirtualDB/${relay}/pin`).on('value', (snapshot) => {
-    snapshot.val().forEach(pin => {
-      io.setup(pin, io.DIR_OUT, () => {
-        db.ref(`VirtualDB/${relay}`)
-          .on('value', (snapshot) => {
-            io.write(pin, snapshot.val().state, (err) => {
-              if (err) {
-                throw err
-              } else {
-                console.log(`[ ${chalk.blue('i')} ]: ${snapshot.val().name} set => ${snapshot.val().state}`)
-              }
-            })
-          })
-      })
-    })
+  db.ref(`VirtualDB/${relay}/pin`).on('value', (snapshot, err) => {
+		if (snapshot.val() != null) {
+			snapshot.val().forEach(pin => {
+				io.setup(pin, io.DIR_OUT, () => {
+					db.ref(`VirtualDB/${relay}`)
+						.on('value', (snapshot) => {
+							io.write(pin, snapshot.val().state, (err) => {
+								if (err) {
+									throw err
+								} else {
+									console.log(`[ ${chalk.blue('i')} ]: ${snapshot.val().name} set => ${snapshot.val().state}`)
+								}
+							})
+						})
+				})
+			})
+		} if (err) {
+			return
+		} else {
+			console.log(`${relay} as id returned: null`)
+		}
   })
 }
 let num_children = 0
