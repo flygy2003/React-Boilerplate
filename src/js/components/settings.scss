@@ -4,16 +4,15 @@ $black: #000000;
 $steel: #202838;
 $coolFont: "Fjalla One", sans-serif;
 
-.titleSettings {
-  display: inline-block;
+.settings-title {
+  display: block;
   position: relative;
   font-family: $coolFont;
   font-size: 60px;
   color: $milk;
   top: 40px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  transform-origin: center;
+	margin: auto;
+	text-align: center;
 }
 
 
@@ -45,6 +44,51 @@ $coolFont: "Fjalla One", sans-serif;
     }
   }
 }
+.settings-shader {
+	z-index: 3;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transition: 0.3s ease-in;
+	filter: blur(5px);
+	display: none;
+	&.active {
+		display: block;
+	}
+}
+.dropdown-container {
+	display: inline-block;
+	font-family: $coolFont;
+	margin: 0px 10px;
+	transform: translate(0, 20%);
+	z-index: 4;
+	cursor: pointer;
+	.dropdown-init-text {
+		display: block;
+		text-underline-position: below;
+		text-decoration: underline;
+		z-index: 5;
+	}
+	.dropdown-list-container {
+		display: none;
+		list-style: none;
+		z-index: 4;
+		top: 100%;
+		transform: translate(-50%, 0px);
+		position: absolute;
+		&.active {
+			display: block;
+			ul {
+
+				li {
+					display: block;
+				}
+			}
+		}
+	}
+}
 .footer {
   display: block;
   height: 4px;
@@ -72,13 +116,10 @@ $coolFont: "Fjalla One", sans-serif;
   }
 }
 .fab {
-  width: 120px;
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  transform-origin: center;
-  height: 120px;
+	display: block;
+  z-index: 0;
+  width: 30%;
+  margin: 0 auto;
   &.circle {
     fill: #85d325;
   }
