@@ -1,8 +1,24 @@
 import React, { Component } from 'react'
 import Card, {Room} from "./Card.jsx"
 import "./settings.scss"
+import * as firebase from 'firebase'
+var db = firebase.database()
 
+var range = [0, 1, 2, 3, 4, 5, 6, 7, 8,
+  9, 10, 11, 12, 13, 14, 15,
+  16, 17, 18, 19, 20, 21, 22,
+  23, 24, 25, 26, 27, 28, 29, 30]
 class Settings extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      listActive: false
+    }
+  }
+  onClick() {
+    this.setState(prevState => ({listActive: !prevState.listActive}))
+    console.log(this.state.listActive)
+  }
   render() {
     return(
       <div>
@@ -11,19 +27,13 @@ class Settings extends Component {
         <div className='row-wrapper'>
           <Row>
             <Text>Rename:</Text>
-            <select className='rename from'>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
+            <div>
+              <span>
+                
+              </span>
+            </div>
             <Text>To:</Text>
-            <select className='rename to'>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
+            <Input>New Name</Input>
           </Row>
           <Footer/>
         </div>
@@ -49,7 +59,7 @@ class Settings extends Component {
 class Title extends Component {
   render() {
     return(
-      <div className='title'>{this.props.children}</div>
+      <div className='titleSettings'>{this.props.children}</div>
     )
   }
 }
@@ -73,9 +83,9 @@ class Input extends Component {
   render() {
     return (
       <div className='form-wrapper'>
-        <from className='form'>
+        <form className='form'>
           <input className='form input' type="text" placeholder={this.props.children}/>
-        </from>
+        </form>
       </div>
     )
   }

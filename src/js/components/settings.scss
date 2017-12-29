@@ -4,17 +4,21 @@ $black: #000000;
 $steel: #202838;
 $coolFont: "Fjalla One", sans-serif;
 
-.title {
+.titleSettings {
   display: inline-block;
   position: relative;
   font-family: $coolFont;
   font-size: 60px;
   color: $milk;
   top: 40px;
-  left: calc(50% - 96.555px);
+  left: 50%;
+  transform: translate(-50%, 0%);
+  transform-origin: center;
 }
+
+
 .text {
-  position: relative;
+  position: relative;     
   top: calc(50% - 18.5px);
 }
 .row-wrapper {
@@ -52,12 +56,13 @@ $coolFont: "Fjalla One", sans-serif;
   margin-left: 20px;
   .form {
     display: inline-block;
-    text-align: center;
+    height: 35px;
     &.input {
+      border-radius: 9px;
       display: inline-block;
       font-family: "Roboto", sans-serif;
       outline: 0;
-      background: #f2f2f2;
+      background: $milk;
       min-width: 150px;
       border: 0;
       padding: 5px;
@@ -67,12 +72,13 @@ $coolFont: "Fjalla One", sans-serif;
   }
 }
 .fab {
-  z-index: 0;
   width: 120px;
-  margin: 0 auto;
   position: fixed;
   bottom: 100px;
-  left: calc(50% - 60px);
+  left: 50%;
+  transform: translate(-50%, 0%);
+  transform-origin: center;
+  height: 120px;
   &.circle {
     fill: #85d325;
   }
