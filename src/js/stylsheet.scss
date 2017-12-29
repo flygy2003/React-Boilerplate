@@ -23,13 +23,13 @@ body {
     transform: perspective(1000px) rotateX(10deg);
   }
   .title {
-    display: inline-block;
+    display: block;
     position: relative;
     font-family: $coolFont;
     font-size: 60px;
     color: $milk;
-    top: 40px;
-    left: calc(50% - 70.545px);
+		margin: auto;
+		text-align: center;
   }
   .wrapper {
     bottom: 0;

@@ -11,19 +11,9 @@ class Settings extends Component {
         <div className='row-wrapper'>
           <Row>
             <Text>Rename:</Text>
-            <select className='rename from'>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
+            <DropDown>Old Name</DropDown>
             <Text>To:</Text>
-            <select className='rename to'>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
+            <Input>New Name</Input>
           </Row>
           <Footer/>
         </div>
@@ -39,17 +29,46 @@ class Settings extends Component {
             <Text>Set Timers: Soon To Come...</Text>
           </Row>
         </div>
+          <FAB/>
         </Card>
-        <FAB/>
       </div>
     )
   }
 }
-
+class DropDown extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			active: false,
+			name: ''
+		}
+	}
+	componentDidMount() {
+		this.setState({name: this.props.children})
+	}
+	onClick() {
+		this.setState({active: !this.state.active})
+	}
+	render() {
+		return(
+			<div onClick={this.onClick.bind(this)} className='dropdown-container'>	
+				<span onClick={this.onClick.bind(this)} className='dropdown-init-text'><u>{this.state.name}</u></span>
+				<div className={this.state.active ? 'settings-shader active' : 'settings-shader'}/>
+				<div className={this.state.active ? 'dropdown-list-container active' : 'dropdown-list-container'}>
+				<ul>	
+					<li>Item 1</li>
+					<li>Item 2</li>
+					<li>Item 3</li>
+				</ul>
+				</div>
+			</div>
+		)
+	}
+}
 class Title extends Component {
   render() {
     return(
-      <div className='title'>{this.props.children}</div>
+      <div className='settings-title'>{this.props.children}</div>
     )
   }
 }

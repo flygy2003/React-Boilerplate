@@ -24,14 +24,16 @@ $coolFont: "Fjalla One", sans-serif;
     }
   }
 
-  .dropdownMenu {      
+  .dropdownMenu { 
+		z-index: 6;     
     &.menuOpen {
       .menuShade {
         display: block;
       }
 
       .menuContainer {
-        display: block;
+				display: block;
+				z-index: 6;
         
         @media only screen and (max-width: 800px) {
           width: auto;
@@ -42,7 +44,7 @@ $coolFont: "Fjalla One", sans-serif;
 
     .menuShade {
       display: none;
-      z-index: 1;
+      z-index: 5;
       position: fixed;
       top: 0;
       left: 0;
