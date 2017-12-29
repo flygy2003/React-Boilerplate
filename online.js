@@ -15,7 +15,7 @@ var db = fb.database()
 // var pins = 
 //   /*closest to pi*/ [7, 35, 33, 31, 29, 15, 13, 11, 
 //   40, 38, 36, 32, 22, 18, 16, 12]/* furthest from pi */
-for (let i = 0; i <= 30; i++) {
+for (let relay = 0; relay <= 30; relay++) {
   db.ref(`VirtualDB/${relay}/pin`).on('value', (snapshot) => {
     snapshot.val().forEach(pin => {
       io.setup(pin, io.DIR_OUT, () => {
