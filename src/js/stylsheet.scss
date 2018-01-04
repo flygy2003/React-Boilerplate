@@ -12,6 +12,7 @@ body {
   min-width: 300px;
   background: $background_dark;
   overflow-x: hidden;
+  font-family: $coolFont;
   #app {
     height: 100%;
   }
@@ -25,7 +26,7 @@ body {
   .title {
     display: block;
     position: relative;
-    font-family: $coolFont;
+    
     font-size: 60px;
     color: $milk;
 		margin: auto;
@@ -33,6 +34,21 @@ body {
   }
   .wrapper {
     bottom: 0;
+    .tabsLayout {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      margin: 0 auto;
+      border-radius: 30px;
+      border-color: $milk;
+      border-width: 10px;
+      border-style: solid;
+      background-color: $background_dark;
+      .tabItem {
+        font-size: 25px;
+        padding: 5px;
+      }
+    }
   }
   .cardContainer {
     position: relative;
@@ -103,7 +119,6 @@ body {
           display: block;
           width: 350px;
           height: auto;
-          font-family: $coolFont;
           font-size: 275%;
           &.on {
             animation-delay: 0ms;
@@ -149,7 +164,6 @@ body {
     width: 350px;
     height: 55px;
     margin: 20px;
-    font-family: $coolFont;
     user-select: none;
     .on {
       cursor: pointer;

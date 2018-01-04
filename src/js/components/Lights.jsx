@@ -37,10 +37,11 @@ class Lights extends Component {
     return(
       <div className='wrapper'>
         <div className='title'>Lights</div>
-        <div className=''>
-          <span></span>
-          <span></span>
-          <span></span>
+        <div className='tabsLayout'>
+          <Link to="/lights/dad" className='tabItem'></Link>
+          <Link to="/lights/mom" className='tabItem'></Link>
+          <Link to="/lights/ryan" className='tabItem'></Link>
+          <Link to="/lights/neekon" className='tabItem'></Link>
         </div>
         <Card>
           <ul className="flex-container">
