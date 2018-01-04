@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import * as firebase from 'firebase'
 import classnames from 'classnames'
 import Card from './Card.jsx'
+import { Route, Switch, Link } from 'react-router-dom'
 
 var config = {
   apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
@@ -38,10 +39,15 @@ class Lights extends Component {
       <div className='wrapper'>
         <div className='title'>Lights</div>
         <div className='tabsLayout'>
-          <Link to="/lights/dad" className='tabItem'></Link>
-          <Link to="/lights/mom" className='tabItem'></Link>
-          <Link to="/lights/ryan" className='tabItem'></Link>
-          <Link to="/lights/neekon" className='tabItem'></Link>
+          <Link to="/lights" className='tabItem'>Main</Link>
+          <div className='tabSpacer'/>
+          <Link to="/lights/dad" className='tabItem'>Dad</Link>
+          <div className='tabSpacer' />
+          <Link to="/lights/mom" className='tabItem'>Mom</Link>
+          <div className='tabSpacer' />
+          <Link to="/lights/ryan" className='tabItem'>Ryan</Link>
+          <div className='tabSpacer' />
+          <Link to="/lights/neekon" className='tabItem'>Neekon</Link>
         </div>
         <Card>
           <ul className="flex-container">

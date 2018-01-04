@@ -32,6 +32,26 @@ export default class Layout extends React.Component {
               component={() => <Lights/>} />
             <Route
               exact
+              path='/lights/mom'
+              component={() => <Lights />} />
+            <Route
+              exact
+              path='/lights/dad'
+              component={() => <Lights />} />
+            <Route
+              exact
+              path='/lights/ryan'
+              component={() => <Lights />} />
+            <Route
+              exact
+              path='/lights/neekon'
+              component={() => <Lights />} />
+            <Route
+              exact
+              path='/lights/laleh'
+              component={() => <Lights />} />
+            <Route
+              exact
               path='/heater'
               component={() => <Heater/>} />
             <Route
