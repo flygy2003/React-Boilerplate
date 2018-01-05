@@ -57,7 +57,7 @@ class Laleh extends Component {
             {room.map(item => {
               return (<Room lumer={item} key={item} />)
             })
-            })}
+            }
           </ul>
         </Card>
       </div>
@@ -95,7 +95,7 @@ class Room extends Component {
     const { toggle, name } = this.state
     const { lumer } = this.props
     return (
-      <div className={lumer == range[range.length - 1] ? "link-wrapper else" : 'link-wrapper all'}>
+      <div className={lumer == room[room.length - 1] ? "link-wrapper else" : 'link-wrapper all'}>
         <li onClick={this.handleClick} className={toggle ? "room on" : "room off"}>
           {name}
         </li>

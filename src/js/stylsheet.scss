@@ -39,7 +39,7 @@ body {
       position: relative;
       top: 30px;
       max-width: 70%;
-      min-width: 530px;
+      min-width: 501                                                                                                                                                                     0px;
       display: flex;
       justify-content: center;
       flex-direction: row;
@@ -49,12 +49,19 @@ body {
       border-width: 10px;
       border-style: solid;
       background-color: $background_dark;
+        @media screen and (max-width: 800px){
+          width: 400px;
+          min-width: 380px;
+        }
       .tabSpacer {
         height: inherit;
         width: 3px;
         background-color: $milk;
       }
       .tabItem {
+        @media screen and (max-width: 800px){
+          font-size: 160%;
+        }
         text-decoration: none;
         color: $milk;
         font-size: 250%;
@@ -200,7 +207,7 @@ body {
   @media only screen and (max-width: 800px) {
     .cardContainer {
       min-width: 0;
-      width: 240px;\
+      width: 240px;
       .flex-container {
         float: left;
         display: block;
