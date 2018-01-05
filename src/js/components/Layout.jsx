@@ -5,6 +5,11 @@ import Lights from "./Lights.jsx"
 import Settings from "./Settings.jsx"
 import Heater from "./Heater.jsx"
 import Card from "./Card.jsx"
+import Dad from './Dad.jsx'
+import Mom from './Mom.jsx'
+import Neekon from './Neekon.jsx'
+import Ryan from './Ryan.jsx'
+import Laleh from './Laleh.jsx'
 import { Route, Switch } from 'react-router-dom'
 
 export default class Layout extends React.Component {
@@ -33,23 +38,23 @@ export default class Layout extends React.Component {
             <Route
               exact
               path='/lights/mom'
-              component={() => <Lights />} />
+              component={() => <Mom/>} />
             <Route
               exact
               path='/lights/dad'
-              component={() => <Lights />} />
+              component={() => <Dad/>} />
             <Route
               exact
               path='/lights/ryan'
-              component={() => <Lights />} />
+              component={() => <Ryan/>} />
             <Route
               exact
               path='/lights/neekon'
-              component={() => <Lights />} />
+              component={() => <Neekon/>} />
             <Route
               exact
               path='/lights/laleh'
-              component={() => <Lights />} />
+              component={() => <Laleh/>} />
             <Route
               exact
               path='/heater'
