@@ -5,12 +5,7 @@ import Card from './Card.jsx'
 import { Route, Switch, Link } from 'react-router-dom'
 
 var db = firebase.database()
-var room = [0,3,11,13,15,18,19,25,26]
-db.ref('fav/mom').on('value', snapshot => {
-  snapshot.val().forEach(item => {
-    room.push(item)
-  })
-})
+var room = [27, 15, 18, 19, 14, 13]
 class Mom extends Component {
   constructor(props) {
     super(props)

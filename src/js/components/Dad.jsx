@@ -5,7 +5,7 @@ import Card from './Card.jsx'
 import { Route, Switch, Link } from 'react-router-dom'
 
 var db = firebase.database()
-var room = [0,5,6,7,8,11,13,14,16,17,20,29]
+var room = [27, 13, 14, 15, 16, 17]
 class Dad extends Component {
   constructor(props) {
     super(props)
