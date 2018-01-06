@@ -50,8 +50,8 @@ body {
       border-style: solid;
       background-color: $background_dark;
         @media screen and (max-width: 800px){
-          width: 400px;
-          min-width: 380px;
+          min-width: 250px;
+          max-width: 60%;
         }
       .tabSpacer {
         height: inherit;
@@ -60,7 +60,7 @@ body {
       }
       .tabItem {
         @media screen and (max-width: 800px){
-          font-size: 160%;
+          font-size: 130%;
         }
         text-decoration: none;
         color: $milk;
