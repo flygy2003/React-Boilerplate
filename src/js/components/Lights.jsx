@@ -5,13 +5,14 @@ import Card from './Card.jsx'
 import { Route, Switch, Link } from 'react-router-dom'
 
 var config = {
-  apiKey: "AIzaSyDJ31YrXt8JAPUZHYGNRS8WNjoHaz8ssuE",
-  authDomain: "home-b7104.firebaseapp.com",
-  databaseURL: "https://home-b7104.firebaseio.com",
-  projectId: "home-b7104",
-  storageBucket: "home-b7104.appspot.com",
-  messagingSenderId: "42864256502"
-}
+    apiKey: "AIzaSyDadxGbEl4SS514aJuFILfJpDKaM6exCTg",
+    authDomain: "lights-29f28.firebaseapp.com",
+    databaseURL: "https://lights-29f28.firebaseio.com",
+    projectId: "lights-29f28",
+    storageBucket: "lights-29f28.appspot.com",
+    messagingSenderId: "109285280230",
+    appId: "1:109285280230:web:ed76d615fa49a3eed46e27"
+  }
 
 firebase.initializeApp(config)
 var database = firebase.database()
